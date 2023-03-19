@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://sukhdeepg.github.io/sitemap.xml
