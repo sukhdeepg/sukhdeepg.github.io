@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Understanding SOLID Principles with examples in Python | Sukhdeep&#39;s Blog</title>
+<meta name="keywords" content="fundamentals, low-level-design">
+<meta name="description" content="When we start our programming journey, with continuous practice and learning, writing code becomes easier. But, as we advance in our careers, it becomes equally important to learn how to maintain and help others maintain what we are writing. 1. Single Responsibility Principle Easy to understand. Every module, class, or function should only have a single responsibility or only one reason to change. But it’s difficult to practically implement because lines can get blurry during implementation.">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/posts/solid/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Understanding SOLID Principles with examples in Python" />
+<meta property="og:description" content="When we start our programming journey, with continuous practice and learning, writing code becomes easier. But, as we advance in our careers, it becomes equally important to learn how to maintain and help others maintain what we are writing. 1. Single Responsibility Principle Easy to understand. Every module, class, or function should only have a single responsibility or only one reason to change. But it’s difficult to practically implement because lines can get blurry during implementation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sukhdeepg.github.io/posts/solid/" />
+<meta property="og:image" content="https://sukhdeepg.github.io/img/solid_principles.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-21T23:07:07+05:30" />
+<meta property="article:modified_time" content="2023-03-21T23:07:07+05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sukhdeepg.github.io/img/solid_principles.png" />
+<meta name="twitter:title" content="Understanding SOLID Principles with examples in Python"/>
+<meta name="twitter:description" content="When we start our programming journey, with continuous practice and learning, writing code becomes easier. But, as we advance in our careers, it becomes equally important to learn how to maintain and help others maintain what we are writing. 1. Single Responsibility Principle Easy to understand. Every module, class, or function should only have a single responsibility or only one reason to change. But it’s difficult to practically implement because lines can get blurry during implementation."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://sukhdeepg.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Understanding SOLID Principles with examples in Python",
+      "item": "https://sukhdeepg.github.io/posts/solid/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Understanding SOLID Principles with examples in Python",
+  "name": "Understanding SOLID Principles with examples in Python",
+  "description": "When we start our programming journey, with continuous practice and learning, writing code becomes easier. But, as we advance in our careers, it becomes equally important to learn how to maintain and help others maintain what we are writing. 1. Single Responsibility Principle Easy to understand. Every module, class, or function should only have a single responsibility or only one reason to change. But it’s difficult to practically implement because lines can get blurry during implementation.",
+  "keywords": [
+    "fundamentals", "low-level-design"
+  ],
+  "articleBody": "When we start our programming journey, with continuous practice and learning, writing code becomes easier. But, as we advance in our careers, it becomes equally important to learn how to maintain and help others maintain what we are writing. 1. Single Responsibility Principle Easy to understand. Every module, class, or function should only have a single responsibility or only one reason to change. But it’s difficult to practically implement because lines can get blurry during implementation.\nTo simplify this, Uncle Bob says that “This principle is about people” in this blog.\nLet’s understand with an example\nclass Payment: # process the payment def process(self): pass # save the payment def save(self): pass # retrieve the payment information def retrieve(self): pass # return analytics data related to payment. E.g. processing time of payment def analytics(self): pass # check if the information for payment is correct or not. E.g. card number, CVV, etc def check(self): pass As we can see, this class is performing a lot of functions for a given payment and has more than one reason to change. What if we have different people using these functionalities? If one person thinks to change the check function logic and return field to bool mapping dict e.g {“is_cvv_valid”: True} instead of list of field and bool tuple e.g. [(\"is_cvv_valid\", True)], this will affect the processing logic and eventually, analytics will create panic!\nIt will be better if each functionality is isolated and handled by a single team or individual in order to avoid any dependency and compatibility issues. Each functionality will have a standard output format. So, even if the internal logic changes for a functionality, it won’t affect the other dependent functionalities and will also have a single responsibility and reason to change. This will make the code more cohesive and easier to maintain.\nclass ProcessPayment: def process(self): pass class SavePayment: def save(self): pass class RetrievePayment: def retrieve(self): pass class AnalyticsPayment: def analytics(self): pass class SecCheckPayment: def security_check(self): pass 2. Open-closed Principle Open for extension but closed for modification. Extension means that we’re extending the functionality of our code. Modification means that we’re modifying our existing code.\nNow, which sounds more risky? modification, right? Because when we write our code, test it, and deploy it, we should not go back and modify it, as this can lead to instability, create bugs, etc.\nIn Python (and in many other languages), we can make use of an abstract base class to help us extend the functionality of our code.\nLet’s understand with an example\nfrom abc import ABC, abstractmethod class Hardware(ABC): @abstractmethod def functionality(): pass class Monitor(Hardware): def functionality(self): print('To display information on the screen.') class Mouse(Hardware): def functionality(self): print('To move cursor on the screen and click on elements.') class Keyboard(Hardware): def functionality(self): print('To help type the required information.') mon = Monitor() mou = Mouse() key = Keyboard() mon.functionality() mou.functionality() key.functionality() Here, if we need to add functionality for Printer, we don’t need to modify any existing class or function, we can simply extend the Hardware class and create the functionality.\nclass Printer(Hardware): def functionality(self): print('To print information on the paper.') 3. Liskov Substitution Principle If we have an object of superclass (A) and an object of child class (B), then we should be able to replace A with B without affecting the existing behaviour of the program.\nContinuing the example from the Open-closed principle, if we want to create a function that takes the Hardware and prints its functionality, we don’t want to create if elif else condition blocks to decide what to print. Instead, it will be much cleaner to create a generic function that just takes an object and prints the functionality.\nfrom abc import ABC, abstractmethod class Hardware(ABC): @abstractmethod def functionality(): pass class Monitor(Hardware): def functionality(self): print('To display information on the screen.') class Mouse(Hardware): def functionality(self): print('To move cursor on the screen and click on elements.') class Keyboard(Hardware): def functionality(self): print('To help type the required information.') class Printer(Hardware): def functionality(self): print('To print information on the paper.') def print_functionality(h: Hardware): h.functionality() mon = Monitor() mou = Mouse() key = Keyboard() pri = Printer() print_functionality(mon) print_functionality(mou) print_functionality(key) print_functionality(pri) In the print_functionality function, we can easily replace the object of the Hardware class with objects of the Monitor, Mouse, Keyboard, Printer classes. 4. Interface Segregation Principle The interface segregation principle (ISP) states that no code should be forced to depend on methods it does not use. Source.\nIf we add the firmware_update function to our Hardware class, it would mean that, all our child classes would need to have the firmware_update function.\nclass Hardware(ABC): @abstractmethod def functionality(): pass @abstractmethod def firmware_update(): pass Now, this firmware_update function will not be used by the mouse and keyboard usually. So, why do these classes even need to have this function? This violates the ISP. To avoid this, we can have the following update\nfrom abc import ABC, abstractmethod class Hardware(ABC): @abstractmethod def functionality(): pass class Firmware(ABC): @abstractmethod def update(): pass class Monitor(Hardware, Firmware): def functionality(self): print('To display information on the screen.') def update(): print('Updating firmware.') class Mouse(Hardware): def functionality(self): print('To move cursor on the screen and click on elements.') class Keyboard(Hardware): def functionality(self): print('To help type the required information.') class Printer(Hardware, Firmware): def functionality(self): print('To print information on the paper.') def update(self): print('Updating firmware.') 5. Dependency Inversion Principle High-level modules or classes should not depend on low-level modules (concrete implementations) or classes. High-modules should depend on abstractions or interfaces.\nLet’s see example for high-level and low-level class\nfrom abc import ABC, abstractmethod class MusicPlayer: def play(self): music_service_a = MusicServiceA() music_service_a.play() class MusicServiceA: def play(self): print('Playing music from MusicServiceA.') mp = MusicPlayer() mp.play() MusicPlayer is the high-level class and MusicServiceA is the low-level class. Here, MusicPlayer is directly dependent on the MusicServiceA class. If tomorrow, we need another service to play music from, we would need to modify the MusicPlayer class which violates the OCP. To avoid this dependency, we can create a MusicService abstract class and pass it to the MusicPlayer.\nfrom abc import ABC, abstractmethod class MusicPlayer: def __init__(self, music_service): self.music_service = music_service def play(self): self.music_service.play() class MusicService(ABC): @abstractmethod def play(self): pass class MusicServiceA(MusicService): def play(self): print('Playing music from MusicServiceA.') class MusicServiceB(MusicService): def play(self): print('Playing music from MusicServiceB.') msa = MusicServiceA() msb = MusicServiceB() mp1 = MusicPlayer(msa) mp2 = MusicPlayer(msb) mp1.play() mp2.play() Conclusion We covered all the SOLID principles with Python examples (dos and don’ts) and simplified the definitions associated with the principles.\nHope the post have created some value. Peace!\n",
+  "wordCount" : "1077",
+  "inLanguage": "en",
+  "image":"https://sukhdeepg.github.io/img/solid_principles.png","datePublished": "2023-03-21T23:07:07+05:30",
+  "dateModified": "2023-03-21T23:07:07+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sukhdeepg.github.io/posts/solid/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Sukhdeep's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sukhdeepg.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="Sukhdeep&#39;s Blog (Alt + H)">Sukhdeep&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Understanding SOLID Principles with examples in Python
+    </h1>
+    <div class="post-meta"><span title='2023-03-21 23:07:07 +0530 IST'>March 21, 2023</span>&nbsp;·&nbsp;6 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/solid_principles.png" alt="solid_principles">
+        
+</figure>
+  <div class="post-content"><p>When we start our programming journey, with continuous practice and learning, writing code becomes easier. But, as we advance in our careers, it becomes equally important to learn how to maintain and help others maintain what we are writing.
+<br/></p>
+<h3 id="1-single-responsibility-principle">1. Single Responsibility Principle<a hidden class="anchor" aria-hidden="true" href="#1-single-responsibility-principle">#</a></h3>
+<p>Easy to understand. Every module, class, or function should only have a single responsibility or only one reason to change. But it’s difficult to practically implement because lines can get blurry during implementation.</p>
+<p>To simplify this, Uncle Bob says that <em>&ldquo;This principle is about people&rdquo;</em> in this <a href="https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html">blog</a>.</p>
+<p>Let’s understand with an example</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Payment</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># process the payment</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># save the payment</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># retrieve the payment information</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># return analytics data related to payment. E.g. processing time of payment</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">analytics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># check if the information for payment is correct or not. E.g. card number, CVV, etc</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></div><p>As we can see, this class is performing a lot of functions for a given payment and has more than one reason to change. What if we have different people using these functionalities? If one person thinks to change the <code>check</code> function logic and return <code>field</code> to <code>bool</code> mapping <code>dict</code> e.g <code>{“is_cvv_valid”: True}</code> instead of <code>list</code> of <code>field</code> and <code>bool</code> <code>tuple</code> e.g. <code>[(&quot;is_cvv_valid&quot;, True)]</code>, this will affect the processing logic and eventually, analytics will create panic!</p>
+<p>It will be better if each functionality is isolated and handled by a single team or individual in order to avoid any dependency and compatibility issues. Each functionality will have a standard output format. So, even if the internal logic changes for a functionality, it won’t affect the other dependent functionalities and will also have a single responsibility and reason to change. This will make the code more cohesive and easier to maintain.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ProcessPayment</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SavePayment</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">RetrievePayment</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AnalyticsPayment</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">analytics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SecCheckPayment</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">security_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></div><br/>
+<h3 id="2-open-closed-principle">2. Open-closed Principle<a hidden class="anchor" aria-hidden="true" href="#2-open-closed-principle">#</a></h3>
+<p>Open for extension but closed for modification. <em>Extension</em> means that we’re extending the functionality of our code. <em>Modification</em> means that we’re modifying our existing code.</p>
+<p>Now, which sounds more risky? modification, right? Because when we write our code, test it, and deploy it, we should not go back and modify it, as this can lead to instability, create bugs, etc.</p>
+<p>In Python (and in many other languages), we can make use of an abstract base class to help us extend the functionality of our code.</p>
+<p>Let’s understand with an example</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Hardware</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Monitor</span><span class="p">(</span><span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To display information on the screen.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Mouse</span><span class="p">(</span><span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To move cursor on the screen and click on elements.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Keyboard</span><span class="p">(</span><span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To help type the required information.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mon</span> <span class="o">=</span> <span class="n">Monitor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">mou</span> <span class="o">=</span> <span class="n">Mouse</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="n">Keyboard</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mon</span><span class="o">.</span><span class="n">functionality</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">mou</span><span class="o">.</span><span class="n">functionality</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span><span class="o">.</span><span class="n">functionality</span><span class="p">()</span>
+</span></span></code></pre></div><p>Here, if we need to add functionality for Printer, we don’t need to modify any existing class or function, we can simply extend the Hardware class and create the functionality.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Printer</span><span class="p">(</span><span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To print information on the paper.&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><br/>
+<h3 id="3-liskov-substitution-principle">3. Liskov Substitution Principle<a hidden class="anchor" aria-hidden="true" href="#3-liskov-substitution-principle">#</a></h3>
+<p>If we have an object of superclass (A) and an object of child class (B), then we should be able to replace A with B without affecting the existing behaviour of the program.</p>
+<p>Continuing the example from the Open-closed principle, if we want to create a function that takes the <code>Hardware</code> and prints its functionality, we don’t want to create <code>if</code> <code>elif</code> <code>else</code> condition blocks to decide what to print. Instead, it will be much cleaner to create a generic function that just takes an object and prints the functionality.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Hardware</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Monitor</span><span class="p">(</span><span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To display information on the screen.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Mouse</span><span class="p">(</span><span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To move cursor on the screen and click on elements.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Keyboard</span><span class="p">(</span><span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To help type the required information.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Printer</span><span class="p">(</span><span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To print information on the paper.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">print_functionality</span><span class="p">(</span><span class="n">h</span><span class="p">:</span> <span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">h</span><span class="o">.</span><span class="n">functionality</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">mon</span> <span class="o">=</span> <span class="n">Monitor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">mou</span> <span class="o">=</span> <span class="n">Mouse</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">key</span> <span class="o">=</span> <span class="n">Keyboard</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">pri</span> <span class="o">=</span> <span class="n">Printer</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">print_functionality</span><span class="p">(</span><span class="n">mon</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">print_functionality</span><span class="p">(</span><span class="n">mou</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">print_functionality</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">print_functionality</span><span class="p">(</span><span class="n">pri</span><span class="p">)</span>
+</span></span></code></pre></div><p>In the <code>print_functionality</code> function, we can easily replace the object of the <code>Hardware</code> class with objects of the <code>Monitor</code>, <code>Mouse</code>, <code>Keyboard</code>, <code>Printer</code> classes.
+<br/></p>
+<h3 id="4-interface-segregation-principle">4. Interface Segregation Principle<a hidden class="anchor" aria-hidden="true" href="#4-interface-segregation-principle">#</a></h3>
+<blockquote>
+<p>The interface segregation principle (ISP) states that no code should be forced to depend on methods it does not use. <a href="https://en.wikipedia.org/wiki/Interface_segregation_principle#cite_note-ASD-1">Source</a>.</p>
+</blockquote>
+<p>If we add the <code>firmware_update</code> function to our <code>Hardware</code> class, it would mean that, all our child classes would need to have the <code>firmware_update</code> function.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Hardware</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">firmware_update</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></div><p>Now, this <code>firmware_update</code> function will not be used by the <code>mouse</code> and <code>keyboard</code> usually. So, why do these classes even need to have this function? This violates the ISP.
+To avoid this, we can have the following update</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Hardware</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Firmware</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Monitor</span><span class="p">(</span><span class="n">Hardware</span><span class="p">,</span> <span class="n">Firmware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To display information on the screen.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Updating firmware.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Mouse</span><span class="p">(</span><span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To move cursor on the screen and click on elements.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Keyboard</span><span class="p">(</span><span class="n">Hardware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To help type the required information.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Printer</span><span class="p">(</span><span class="n">Hardware</span><span class="p">,</span> <span class="n">Firmware</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">functionality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;To print information on the paper.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Updating firmware.&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><br/>
+<h3 id="5-dependency-inversion-principle">5. Dependency Inversion Principle<a hidden class="anchor" aria-hidden="true" href="#5-dependency-inversion-principle">#</a></h3>
+<p>High-level modules or classes should not depend on low-level modules (concrete implementations) or classes. High-modules should depend on abstractions or interfaces.</p>
+<p>Let’s see example for high-level and low-level class</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MusicPlayer</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">music_service_a</span> <span class="o">=</span> <span class="n">MusicServiceA</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">music_service_a</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MusicServiceA</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Playing music from MusicServiceA.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="n">mp</span> <span class="o">=</span> <span class="n">MusicPlayer</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">mp</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</span></span></code></pre></div><p><code>MusicPlayer</code> is the high-level class and <code>MusicServiceA</code> is the low-level class. Here, <code>MusicPlayer</code> is directly dependent on the <code>MusicServiceA</code> class. If tomorrow, we need another service to play music from, we would need to modify the <code>MusicPlayer</code> class which violates the OCP. To avoid this dependency, we can create a <code>MusicService</code> abstract class and pass it to the <code>MusicPlayer</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MusicPlayer</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">music_service</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">music_service</span> <span class="o">=</span> <span class="n">music_service</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">music_service</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MusicService</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MusicServiceA</span><span class="p">(</span><span class="n">MusicService</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Playing music from MusicServiceA.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MusicServiceB</span><span class="p">(</span><span class="n">MusicService</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Playing music from MusicServiceB.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">msa</span> <span class="o">=</span> <span class="n">MusicServiceA</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">msb</span> <span class="o">=</span> <span class="n">MusicServiceB</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">mp1</span> <span class="o">=</span> <span class="n">MusicPlayer</span><span class="p">(</span><span class="n">msa</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mp2</span> <span class="o">=</span> <span class="n">MusicPlayer</span><span class="p">(</span><span class="n">msb</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mp1</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">mp2</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</span></span></code></pre></div><br/>
+<h3 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h3>
+<p>We covered all the SOLID principles with Python examples (dos and don&rsquo;ts) and simplified the definitions associated with the principles.</p>
+<p>Hope the post have created some value. Peace!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://sukhdeepg.github.io/tags/fundamentals/">fundamentals</a></li>
+      <li><a href="https://sukhdeepg.github.io/tags/low-level-design/">low-level-design</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://sukhdeepg.github.io/">Sukhdeep&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

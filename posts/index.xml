@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Sukhdeep&#39;s Blog</title>
-    <link>https://sukhdeepg.github.io/</link>
-    <description>Recent content on Sukhdeep&#39;s Blog</description>
+    <title>Posts on Sukhdeep&#39;s Blog</title>
+    <link>https://sukhdeepg.github.io/posts/</link>
+    <description>Recent content in Posts on Sukhdeep&#39;s Blog</description>
     <image>
       <title>Sukhdeep&#39;s Blog</title>
       <url>https://sukhdeepg.github.io/</url>
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 21 Mar 2023 23:07:07 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Mar 2023 23:07:07 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Understanding SOLID Principles with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/solid/</link>
@@ -19,7 +19,6 @@
       <guid>https://sukhdeepg.github.io/posts/solid/</guid>
       <description>When we start our programming journey, with continuous practice and learning, writing code becomes easier. But, as we advance in our careers, it becomes equally important to learn how to maintain and help others maintain what we are writing. 1. Single Responsibility Principle Easy to understand. Every module, class, or function should only have a single responsibility or only one reason to change. But it’s difficult to practically implement because lines can get blurry during implementation.</description>
     </item>
-    
     
   </channel>
 </rss>
