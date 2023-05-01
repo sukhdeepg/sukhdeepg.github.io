@@ -10,9 +10,18 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 21 Mar 2023 23:07:07 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/low-level-design/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 May 2023 11:10:03 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/low-level-design/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Understanding SOLID Principles with examples in Python</title>
+      <title>Factory Method with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/factory-method/</link>
+      <pubDate>Mon, 01 May 2023 11:10:03 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/factory-method/</guid>
+      <description>The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes. Let&amp;rsquo;s understand the above with an example:</description>
+    </item>
+    
+    <item>
+      <title>SOLID Principles with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/solid/</link>
       <pubDate>Tue, 21 Mar 2023 23:07:07 +0530</pubDate>
       
