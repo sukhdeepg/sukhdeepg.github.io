@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Abstract Factory with examples in Python | Sukhdeep&#39;s Blog</title>
+<meta name="keywords" content="fundamentals, low-level-design, design patterns">
+<meta name="description" content="Abstract Factory is a creational design pattern that helps create groups of related objects without knowing their specific classes. It&rsquo;s particularly useful when we need to create objects that belong to a family, but we don&rsquo;t care about the specific implementation.
+First, let&rsquo;s understand create groups of related objects without knowing their specific classes with a small example:
+class ShapeFactory: def create_shape(self, shape_type): if shape_type == &#39;circle&#39;: return Circle() elif shape_type == &#39;square&#39;: return Square() elif shape_type == &#39;triangle&#39;: return Triangle() factory = ShapeFactory() shape1 = factory.">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/posts/abstract-factory/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Abstract Factory with examples in Python" />
+<meta property="og:description" content="Abstract Factory is a creational design pattern that helps create groups of related objects without knowing their specific classes. It&rsquo;s particularly useful when we need to create objects that belong to a family, but we don&rsquo;t care about the specific implementation.
+First, let&rsquo;s understand create groups of related objects without knowing their specific classes with a small example:
+class ShapeFactory: def create_shape(self, shape_type): if shape_type == &#39;circle&#39;: return Circle() elif shape_type == &#39;square&#39;: return Square() elif shape_type == &#39;triangle&#39;: return Triangle() factory = ShapeFactory() shape1 = factory." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sukhdeepg.github.io/posts/abstract-factory/" />
+<meta property="og:image" content="https://sukhdeepg.github.io/img/abstract_factory.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-07T14:44:52+05:30" />
+<meta property="article:modified_time" content="2023-05-07T14:44:52+05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sukhdeepg.github.io/img/abstract_factory.png" />
+<meta name="twitter:title" content="Abstract Factory with examples in Python"/>
+<meta name="twitter:description" content="Abstract Factory is a creational design pattern that helps create groups of related objects without knowing their specific classes. It&rsquo;s particularly useful when we need to create objects that belong to a family, but we don&rsquo;t care about the specific implementation.
+First, let&rsquo;s understand create groups of related objects without knowing their specific classes with a small example:
+class ShapeFactory: def create_shape(self, shape_type): if shape_type == &#39;circle&#39;: return Circle() elif shape_type == &#39;square&#39;: return Square() elif shape_type == &#39;triangle&#39;: return Triangle() factory = ShapeFactory() shape1 = factory."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://sukhdeepg.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Abstract Factory with examples in Python",
+      "item": "https://sukhdeepg.github.io/posts/abstract-factory/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Abstract Factory with examples in Python",
+  "name": "Abstract Factory with examples in Python",
+  "description": "Abstract Factory is a creational design pattern that helps create groups of related objects without knowing their specific classes. It\u0026rsquo;s particularly useful when we need to create objects that belong to a family, but we don\u0026rsquo;t care about the specific implementation.\nFirst, let\u0026rsquo;s understand create groups of related objects without knowing their specific classes with a small example:\nclass ShapeFactory: def create_shape(self, shape_type): if shape_type == \u0026#39;circle\u0026#39;: return Circle() elif shape_type == \u0026#39;square\u0026#39;: return Square() elif shape_type == \u0026#39;triangle\u0026#39;: return Triangle() factory = ShapeFactory() shape1 = factory.",
+  "keywords": [
+    "fundamentals", "low-level-design", "design patterns"
+  ],
+  "articleBody": "Abstract Factory is a creational design pattern that helps create groups of related objects without knowing their specific classes. It’s particularly useful when we need to create objects that belong to a family, but we don’t care about the specific implementation.\nFirst, let’s understand create groups of related objects without knowing their specific classes with a small example:\nclass ShapeFactory: def create_shape(self, shape_type): if shape_type == 'circle': return Circle() elif shape_type == 'square': return Square() elif shape_type == 'triangle': return Triangle() factory = ShapeFactory() shape1 = factory.create_shape('circle') shape2 = factory.create_shape('square') Here, ShapeFactory creates related shape objects (circles, squares, triangles) without needing to know their specific classes, as it relies on the shape_type parameter.\nThe statement when we need to create objects that belong to a family, but we don’t care about the specific implementation simply means that we want to create objects that share a common behavior, without focusing on the details of how they’re built. Let’s see a small example:\nclass Shape(ABC): @abstractmethod def draw(self): pass class Circle(Shape): def draw(self): return \"Drawing a circle\" class Square(Shape): def draw(self): return \"Drawing a square\" Here, we’re creating shapes that belong to the Shape family. We don’t care about the specific implementation (e.g., how the circle or square is drawn) but we care about the common interface (the draw method). The ShapeFactory creates the objects, and we can use them without knowing their details:\nfactory = ShapeFactory() shape1 = factory.create_shape('circle') shape2 = factory.create_shape('square') shape1.draw() # Output: Drawing a circle shape2.draw() # Output: Drawing a square One can create and use shapes without knowing their specific classes or implementations, focusing on their shared behavior through the Shape interface.\nNow, let’s understand everything together with the following example:\nfrom abc import ABC from abc import abstractmethod class Engine(ABC): @abstractmethod def description(self): pass class Car(ABC): @abstractmethod def assemble(self): pass Concrete classes for Hybrid, Electric, and Gasoline engines:\nclass HybridEngine(Engine): def description(self): return \"hybrid engine\" class ElectricEngine(Engine): def description(self): return \"electric engine\" class GasolineEngine(Engine): def description(self): return \"gasoline engine\" Implementing concrete classes for Car with different engines:\nclass HybridCar(Car): def __init__(self, engine: Engine): self.engine = engine def assemble(self): return f\"Assembling a car with a {self.engine.description()}\" class ElectricCar(Car): def __init__(self, engine: Engine): self.engine = engine def assemble(self): return f\"Assembling a car with a {self.engine.description()}\" class GasolineCar(Car): def __init__(self, engine: Engine): self.engine = engine def assemble(self): return f\"Assembling a car with a {self.engine.description()}\" Abstract Factory for creating cars:\nclass CarFactory(ABC): @abstractmethod def create_car(self) -\u003e Car: pass Concrete factory classes for Hybrid, Electric, and Gasoline cars:\nclass HybridCarFactory(CarFactory): def create_car(self) -\u003e Car: return HybridCar(HybridEngine()) class ElectricCarFactory(CarFactory): def create_car(self) -\u003e Car: return ElectricCar(ElectricEngine()) class GasolineCarFactory(CarFactory): def create_car(self) -\u003e Car: return GasolineCar(GasolineEngine()) putting everything together:\ndef client_code(car_factory: CarFactory): car = car_factory.create_car() print(car.assemble()) hybrid_factory = HybridCarFactory() electric_factory = ElectricCarFactory() gasoline_factory = GasolineCarFactory() client_code(hybrid_factory) # Output: Assembling a car with a hybrid engine client_code(electric_factory) # Output: Assembling a car with a electric engine client_code(gasoline_factory) # Output: Assembling a car with a gasoline engine The Abstract Factory pattern allows us to create cars with different engines without specifying their concrete classes, making it easy to add new types of engines or cars in the future.\nNow, let’s understand the difference between Abstract Factory and Factory Method.\nAbstract Factory: It’s about creating families of related objects. Abstract Factory contains multiple Factory Methods for creating different types of products. Clients use the factory object to create objects of different types that belong to a specific family. Factory Method: It’s about creating one type of object. Factory Method defines a single method for object creation. Subclasses decide which class to instantiate. Clients use the Factory Method to create objects without knowing the actual class being instantiated. In summary, Abstract Factory is an extension of Factory Method that can create multiple related objects, while Factory Method focuses on creating a single type of object.\nHope the post have created some value. Peace!\n",
+  "wordCount" : "644",
+  "inLanguage": "en",
+  "image":"https://sukhdeepg.github.io/img/abstract_factory.png","datePublished": "2023-05-07T14:44:52+05:30",
+  "dateModified": "2023-05-07T14:44:52+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sukhdeepg.github.io/posts/abstract-factory/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Sukhdeep's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sukhdeepg.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="Sukhdeep&#39;s Blog (Alt + H)">Sukhdeep&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Abstract Factory with examples in Python
+    </h1>
+    <div class="post-meta"><span title='2023-05-07 14:44:52 +0530 IST'>May 7, 2023</span>&nbsp;·&nbsp;4 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/abstract_factory.png" alt="abstract_factory">
+        
+</figure>
+  <div class="post-content"><p>Abstract Factory is a creational design pattern that helps create groups of related objects without knowing their specific classes. It&rsquo;s particularly useful when we need to create objects that belong to a family, but we don&rsquo;t care about the specific implementation.</p>
+<p>First, let&rsquo;s understand <mark>create groups of related objects without knowing their specific classes</mark> with a small example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ShapeFactory</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">create_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape_type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">shape_type</span> <span class="o">==</span> <span class="s1">&#39;circle&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Circle</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">shape_type</span> <span class="o">==</span> <span class="s1">&#39;square&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Square</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">shape_type</span> <span class="o">==</span> <span class="s1">&#39;triangle&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Triangle</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">factory</span> <span class="o">=</span> <span class="n">ShapeFactory</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">shape1</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_shape</span><span class="p">(</span><span class="s1">&#39;circle&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">shape2</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_shape</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Here, <code>ShapeFactory</code> creates related shape objects (circles, squares, triangles) without needing to know their specific classes, as it relies on the <code>shape_type</code> parameter.</p>
+<p>The statement <mark>when we need to create objects that belong to a family, but we don&rsquo;t care about the specific implementation</mark> simply means that we want to create objects that share a common behavior, without focusing on the details of how they&rsquo;re built. Let&rsquo;s see a small example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Shape</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Circle</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;Drawing a circle&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Square</span><span class="p">(</span><span class="n">Shape</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;Drawing a square&#34;</span>
+</span></span></code></pre></div><p>Here, we&rsquo;re creating shapes that belong to the <code>Shape</code> family. We don&rsquo;t care about the specific implementation (e.g., how the circle or square is drawn) but we care about the common interface (the <code>draw</code> method). The <code>ShapeFactory</code> creates the objects, and we can use them without knowing their details:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">factory</span> <span class="o">=</span> <span class="n">ShapeFactory</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">shape1</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_shape</span><span class="p">(</span><span class="s1">&#39;circle&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">shape2</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_shape</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">shape1</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>  <span class="c1"># Output: Drawing a circle</span>
+</span></span><span class="line"><span class="cl"><span class="n">shape2</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>  <span class="c1"># Output: Drawing a square</span>
+</span></span></code></pre></div><p>One can create and use shapes without knowing their specific classes or implementations, focusing on their shared behavior through the <code>Shape</code> interface.</p>
+<p>Now, let&rsquo;s understand everything together with the following example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Engine</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Car</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">assemble</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></div><p>Concrete classes for <code>Hybrid</code>, <code>Electric</code>, and <code>Gasoline</code> engines:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HybridEngine</span><span class="p">(</span><span class="n">Engine</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;hybrid engine&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ElectricEngine</span><span class="p">(</span><span class="n">Engine</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;electric engine&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GasolineEngine</span><span class="p">(</span><span class="n">Engine</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;gasoline engine&#34;</span>
+</span></span></code></pre></div><p>Implementing concrete classes for <code>Car</code> with different engines:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HybridCar</span><span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="p">:</span> <span class="n">Engine</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">assemble</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Assembling a car with a </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ElectricCar</span><span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="p">:</span> <span class="n">Engine</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">assemble</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Assembling a car with a </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GasolineCar</span><span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="p">:</span> <span class="n">Engine</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">assemble</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Assembling a car with a </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><p>Abstract Factory for creating cars:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CarFactory</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">create_car</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Car</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span></code></pre></div><p>Concrete factory classes for <code>Hybrid</code>, <code>Electric</code>, and <code>Gasoline</code> cars:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HybridCarFactory</span><span class="p">(</span><span class="n">CarFactory</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">create_car</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Car</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">HybridCar</span><span class="p">(</span><span class="n">HybridEngine</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ElectricCarFactory</span><span class="p">(</span><span class="n">CarFactory</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">create_car</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Car</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ElectricCar</span><span class="p">(</span><span class="n">ElectricEngine</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GasolineCarFactory</span><span class="p">(</span><span class="n">CarFactory</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">create_car</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Car</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">GasolineCar</span><span class="p">(</span><span class="n">GasolineEngine</span><span class="p">())</span>
+</span></span></code></pre></div><p>putting everything together:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">client_code</span><span class="p">(</span><span class="n">car_factory</span><span class="p">:</span> <span class="n">CarFactory</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">car</span> <span class="o">=</span> <span class="n">car_factory</span><span class="o">.</span><span class="n">create_car</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="o">.</span><span class="n">assemble</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">hybrid_factory</span> <span class="o">=</span> <span class="n">HybridCarFactory</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">electric_factory</span> <span class="o">=</span> <span class="n">ElectricCarFactory</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">gasoline_factory</span> <span class="o">=</span> <span class="n">GasolineCarFactory</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">client_code</span><span class="p">(</span><span class="n">hybrid_factory</span><span class="p">)</span>    <span class="c1"># Output: Assembling a car with a hybrid engine</span>
+</span></span><span class="line"><span class="cl"><span class="n">client_code</span><span class="p">(</span><span class="n">electric_factory</span><span class="p">)</span>  <span class="c1"># Output: Assembling a car with a electric engine</span>
+</span></span><span class="line"><span class="cl"><span class="n">client_code</span><span class="p">(</span><span class="n">gasoline_factory</span><span class="p">)</span>  <span class="c1"># Output: Assembling a car with a gasoline engine</span>
+</span></span></code></pre></div><p>The Abstract Factory pattern allows us to create cars with different engines without specifying their concrete classes, making it easy to add new types of engines or cars in the future.</p>
+<p>Now, let&rsquo;s understand the difference between Abstract Factory and Factory Method.</p>
+<ol>
+<li>Abstract Factory:</li>
+</ol>
+<ul>
+<li>It&rsquo;s about creating families of related objects.</li>
+<li>Abstract Factory contains multiple Factory Methods for creating different types of products.</li>
+<li>Clients use the factory object to create objects of different types that belong to a specific family.</li>
+</ul>
+<ol start="2">
+<li>Factory Method:</li>
+</ol>
+<ul>
+<li>It&rsquo;s about creating one type of object.</li>
+<li>Factory Method defines a single method for object creation.</li>
+<li>Subclasses decide which class to instantiate. Clients use the Factory Method to create objects without knowing the actual class being instantiated.</li>
+</ul>
+<p>In summary, Abstract Factory is an extension of Factory Method that can create multiple related objects, while Factory Method focuses on creating a single type of object.</p>
+<p>Hope the post have created some value. Peace!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://sukhdeepg.github.io/tags/fundamentals/">fundamentals</a></li>
+      <li><a href="https://sukhdeepg.github.io/tags/low-level-design/">low-level-design</a></li>
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design patterns</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://sukhdeepg.github.io/posts/factory-method/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Factory Method with examples in Python</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://sukhdeepg.github.io/">Sukhdeep&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

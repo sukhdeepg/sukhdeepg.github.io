@@ -139,6 +139,22 @@
 <main class="main"> 
 
 <article class="first-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/abstract_factory.png" alt="abstract_factory">
+</figure>
+  <header class="entry-header">
+    <h2>Abstract Factory with examples in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Abstract Factory is a creational design pattern that helps create groups of related objects without knowing their specific classes. It’s particularly useful when we need to create objects that belong to a family, but we don’t care about the specific implementation.
+First, let’s understand create groups of related objects without knowing their specific classes with a small example:
+class ShapeFactory: def create_shape(self, shape_type): if shape_type == &#39;circle&#39;: return Circle() elif shape_type == &#39;square&#39;: return Square() elif shape_type == &#39;triangle&#39;: return Triangle() factory = ShapeFactory() shape1 = factory....</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-05-07 14:44:52 +0530 IST'>May 7, 2023</span>&nbsp;·&nbsp;4 min</footer>
+  <a class="entry-link" aria-label="post link to Abstract Factory with examples in Python" href="https://sukhdeepg.github.io/posts/abstract-factory/"></a>
+</article>
+
+<article class="post-entry"> 
 <figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/factory_method.png" alt="factory_method">
 </figure>
   <header class="entry-header">
@@ -235,16 +251,6 @@
     })
 
 </script>
-
-
-<script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '428113');
-</script>
-
 </body>
 
 </html>
