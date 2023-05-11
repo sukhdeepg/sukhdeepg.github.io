@@ -10,7 +10,18 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 07 May 2023 14:44:52 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/low-level-design/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 May 2023 23:06:55 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/low-level-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Builder with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/builder/</link>
+      <pubDate>Mon, 08 May 2023 23:06:55 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/builder/</guid>
+      <description>The Builder design pattern is a method for constructing complex objects step-by-step, allowing you to create different configurations or variations of the object without altering the main class representing the object. It simplifies object creation by providing a clear and flexible way to build objects with multiple options or components.
+Let&amp;rsquo;s understand the above with an example:
+class CarBuilder: def __init__(self): self.car = Car() def set_wheels(self, wheels): self.car.wheels = wheels return self def set_color(self, color): self.</description>
+    </item>
+    
     <item>
       <title>Abstract Factory with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/abstract-factory/</link>
