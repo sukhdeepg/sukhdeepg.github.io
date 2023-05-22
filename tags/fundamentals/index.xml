@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>fundamentals on Sukhdeep&#39;s Blog</title>
+    <title>fundamentals on 💾</title>
     <link>https://sukhdeepg.github.io/tags/fundamentals/</link>
-    <description>Recent content in fundamentals on Sukhdeep&#39;s Blog</description>
+    <description>Recent content in fundamentals on 💾</description>
     <image>
-      <title>Sukhdeep&#39;s Blog</title>
+      <title>💾</title>
       <url>https://sukhdeepg.github.io/</url>
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 12 May 2023 14:33:06 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/fundamentals/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 May 2023 21:40:50 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/fundamentals/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Prototype</title>
+      <title>Singleton with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/singleton/</link>
+      <pubDate>Tue, 16 May 2023 21:40:50 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/singleton/</guid>
+      <description>Singleton design pattern is a type of creational pattern which we use when we need to provide global access to an object. Basically, a class will only have one object.
+Let&amp;rsquo;s understand the above with an example:
+class Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super().__call__(*args, **kwargs) return cls._instances[cls] class Car(metaclass=Singleton): def __init__(self, make, model, year): self.make = make self.model = model self.</description>
+    </item>
+    
+    <item>
+      <title>Prototype with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/prototype/</link>
       <pubDate>Fri, 12 May 2023 14:33:06 +0530</pubDate>
       

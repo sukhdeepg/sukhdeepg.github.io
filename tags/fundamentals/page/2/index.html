@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>low-level-design | 💾</title>
+<title>fundamentals | 💾</title>
 <meta name="keywords" content="">
 <meta name="description" content="Blog">
 <meta name="author" content="">
-<link rel="canonical" href="https://sukhdeepg.github.io/tags/low-level-design/">
+<link rel="canonical" href="https://sukhdeepg.github.io/tags/fundamentals/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://sukhdeepg.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/favicon-16x16.png">
@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://sukhdeepg.github.io/tags/low-level-design/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://sukhdeepg.github.io/tags/fundamentals/index.xml">
 <noscript>
     <style>
         #theme-toggle,
@@ -55,15 +55,15 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="low-level-design" />
+</noscript><meta property="og:title" content="fundamentals" />
 <meta property="og:description" content="Blog" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://sukhdeepg.github.io/tags/low-level-design/" /><meta property="og:image" content="https://sukhdeepg.github.io/"/>
+<meta property="og:url" content="https://sukhdeepg.github.io/tags/fundamentals/" /><meta property="og:image" content="https://sukhdeepg.github.io/"/>
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://sukhdeepg.github.io/"/>
 
-<meta name="twitter:title" content="low-level-design"/>
+<meta name="twitter:title" content="fundamentals"/>
 <meta name="twitter:description" content="Blog"/>
 
 </head>
@@ -124,7 +124,7 @@
 <main class="main"> 
 <header class="page-header"><div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/tags/">Tags</a></div>
   <h1>
-    low-level-design
+    fundamentals
     <a href="index.xml" title="RSS" aria-label="RSS">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round" height="23">
@@ -137,85 +137,22 @@
 </header>
 
 <article class="post-entry tag-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/singleton.png" alt="singleton">
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/solid_principles.png" alt="solid_principles">
 </figure>
   <header class="entry-header">
-    <h2>Singleton with examples in Python
+    <h2>SOLID Principles with examples in Python
     </h2>
   </header>
   <div class="entry-content">
-    <p>Singleton design pattern is a type of creational pattern which we use when we need to provide global access to an object. Basically, a class will only have one object.
-Let’s understand the above with an example:
-class Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super().__call__(*args, **kwargs) return cls._instances[cls] class Car(metaclass=Singleton): def __init__(self, make, model, year): self.make = make self.model = model self....</p>
+    <p>When we start our programming journey, with continuous practice and learning, writing code becomes easier. But, as we advance in our careers, it becomes equally important to learn how to maintain and help others maintain what we are writing. 1. Single Responsibility Principle Easy to understand. Every module, class, or function should only have a single responsibility or only one reason to change. But it’s difficult to practically implement because lines can get blurry during implementation....</p>
   </div>
-  <footer class="entry-footer"><span title='2023-05-16 21:40:50 +0530 IST'>May 16, 2023</span>&nbsp;·&nbsp;1 min</footer>
-  <a class="entry-link" aria-label="post link to Singleton with examples in Python" href="https://sukhdeepg.github.io/posts/singleton/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/prototype.png" alt="prototype">
-</figure>
-  <header class="entry-header">
-    <h2>Prototype with examples in Python
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>The Prototype Design Pattern is a creational design pattern that involves duplicating or “cloning” existing objects to create new ones, rather than creating new objects from scratch. This is useful when object creation is time-consuming or complex. This means, instead of creating a new object and setting it up, we make a copy of an existing object and modify it as needed.
-Let’s understand the above with an example:
-import copy class Car: def __init__(self, model, color, engine): self....</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-05-12 14:33:06 +0530 IST'>May 12, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Prototype with examples in Python" href="https://sukhdeepg.github.io/posts/prototype/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/builder.png" alt="builder">
-</figure>
-  <header class="entry-header">
-    <h2>Builder with examples in Python
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>The Builder design pattern is a method for constructing complex objects step-by-step, allowing you to create different configurations or variations of the object without altering the main class representing the object. It simplifies object creation by providing a clear and flexible way to build objects with multiple options or components.
-Let’s understand the above with an example:
-class CarBuilder: def __init__(self): self.car = Car() def set_wheels(self, wheels): self.car.wheels = wheels return self def set_color(self, color): self....</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-05-08 23:06:55 +0530 IST'>May 8, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Builder with examples in Python" href="https://sukhdeepg.github.io/posts/builder/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/abstract_factory.png" alt="abstract_factory">
-</figure>
-  <header class="entry-header">
-    <h2>Abstract Factory with examples in Python
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Abstract Factory is a creational design pattern that helps create groups of related objects without knowing their specific classes. It’s particularly useful when we need to create objects that belong to a family, but we don’t care about the specific implementation.
-First, let’s understand create groups of related objects without knowing their specific classes with a small example:
-class ShapeFactory: def create_shape(self, shape_type): if shape_type == &#39;circle&#39;: return Circle() elif shape_type == &#39;square&#39;: return Square() elif shape_type == &#39;triangle&#39;: return Triangle() factory = ShapeFactory() shape1 = factory....</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-05-07 14:44:52 +0530 IST'>May 7, 2023</span>&nbsp;·&nbsp;4 min</footer>
-  <a class="entry-link" aria-label="post link to Abstract Factory with examples in Python" href="https://sukhdeepg.github.io/posts/abstract-factory/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/factory_method.png" alt="factory_method">
-</figure>
-  <header class="entry-header">
-    <h2>Factory Method with examples in Python
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes. Let’s understand the above with an example:...</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-05-01 11:10:03 +0530 IST'>May 1, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Factory Method with examples in Python" href="https://sukhdeepg.github.io/posts/factory-method/"></a>
+  <footer class="entry-footer"><span title='2023-03-21 23:07:07 +0530 IST'>March 21, 2023</span>&nbsp;·&nbsp;6 min</footer>
+  <a class="entry-link" aria-label="post link to SOLID Principles with examples in Python" href="https://sukhdeepg.github.io/posts/solid/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="next" href="https://sukhdeepg.github.io/tags/low-level-design/page/2/">Next&nbsp;&nbsp;»
+    <a class="prev" href="https://sukhdeepg.github.io/tags/fundamentals/">
+      «&nbsp;Prev&nbsp;
     </a>
   </nav>
 </footer>

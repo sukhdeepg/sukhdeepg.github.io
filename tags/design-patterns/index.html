@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>design patterns | Sukhdeep&#39;s Blog</title>
+<title>design patterns | 💾</title>
 <meta name="keywords" content="">
 <meta name="description" content="Blog">
 <meta name="author" content="">
@@ -83,7 +83,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://sukhdeepg.github.io/" accesskey="h" title="Sukhdeep&#39;s Blog (Alt + H)">Sukhdeep&#39;s Blog</a>
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -137,10 +137,26 @@
 </header>
 
 <article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/singleton.png" alt="singleton">
+</figure>
+  <header class="entry-header">
+    <h2>Singleton with examples in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Singleton design pattern is a type of creational pattern which we use when we need to provide global access to an object. Basically, a class will only have one object.
+Let’s understand the above with an example:
+class Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super().__call__(*args, **kwargs) return cls._instances[cls] class Car(metaclass=Singleton): def __init__(self, make, model, year): self.make = make self.model = model self....</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-05-16 21:40:50 +0530 IST'>May 16, 2023</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to Singleton with examples in Python" href="https://sukhdeepg.github.io/posts/singleton/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
 <figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/prototype.png" alt="prototype">
 </figure>
   <header class="entry-header">
-    <h2>Prototype
+    <h2>Prototype with examples in Python
     </h2>
   </header>
   <div class="entry-content">
@@ -149,7 +165,7 @@ Let’s understand the above with an example:
 import copy class Car: def __init__(self, model, color, engine): self....</p>
   </div>
   <footer class="entry-footer"><span title='2023-05-12 14:33:06 +0530 IST'>May 12, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Prototype" href="https://sukhdeepg.github.io/posts/prototype/"></a>
+  <a class="entry-link" aria-label="post link to Prototype with examples in Python" href="https://sukhdeepg.github.io/posts/prototype/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -200,7 +216,7 @@ class ShapeFactory: def create_shape(self, shape_type): if shape_type == &#39;ci
     </main>
     
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://sukhdeepg.github.io/">Sukhdeep&#39;s Blog</a></span>
+    <span>&copy; 2023 <a href="https://sukhdeepg.github.io/">💾</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

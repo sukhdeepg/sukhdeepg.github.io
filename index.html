@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Sukhdeep&#39;s Blog</title>
+<title>💾</title>
 
 <meta name="description" content="Blog">
 <meta name="author" content="">
@@ -57,7 +57,7 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Sukhdeep&#39;s Blog" />
+</noscript><meta property="og:title" content="💾" />
 <meta property="og:description" content="Blog" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://sukhdeepg.github.io/" /><meta property="og:image" content="https://sukhdeepg.github.io/"/>
@@ -65,14 +65,14 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://sukhdeepg.github.io/"/>
 
-<meta name="twitter:title" content="Sukhdeep&#39;s Blog"/>
+<meta name="twitter:title" content="💾"/>
 <meta name="twitter:description" content="Blog"/>
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Sukhdeep's Blog",
+  "name": "💾",
   "url": "https://sukhdeepg.github.io/",
   "description": "Blog",
   "thumbnailUrl": "https://sukhdeepg.github.io/favicon.ico",
@@ -98,7 +98,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://sukhdeepg.github.io/" accesskey="h" title="Sukhdeep&#39;s Blog (Alt + H)">Sukhdeep&#39;s Blog</a>
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -139,10 +139,26 @@
 <main class="main"> 
 
 <article class="first-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/singleton.png" alt="singleton">
+</figure>
+  <header class="entry-header">
+    <h2>Singleton with examples in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Singleton design pattern is a type of creational pattern which we use when we need to provide global access to an object. Basically, a class will only have one object.
+Let’s understand the above with an example:
+class Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super().__call__(*args, **kwargs) return cls._instances[cls] class Car(metaclass=Singleton): def __init__(self, make, model, year): self.make = make self.model = model self....</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-05-16 21:40:50 +0530 IST'>May 16, 2023</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to Singleton with examples in Python" href="https://sukhdeepg.github.io/posts/singleton/"></a>
+</article>
+
+<article class="post-entry"> 
 <figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/prototype.png" alt="prototype">
 </figure>
   <header class="entry-header">
-    <h2>Prototype
+    <h2>Prototype with examples in Python
     </h2>
   </header>
   <div class="entry-content">
@@ -151,7 +167,7 @@ Let’s understand the above with an example:
 import copy class Car: def __init__(self, model, color, engine): self....</p>
   </div>
   <footer class="entry-footer"><span title='2023-05-12 14:33:06 +0530 IST'>May 12, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Prototype" href="https://sukhdeepg.github.io/posts/prototype/"></a>
+  <a class="entry-link" aria-label="post link to Prototype with examples in Python" href="https://sukhdeepg.github.io/posts/prototype/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -199,24 +215,16 @@ class ShapeFactory: def create_shape(self, shape_type): if shape_type == &#39;ci
   <footer class="entry-footer"><span title='2023-05-01 11:10:03 +0530 IST'>May 1, 2023</span>&nbsp;·&nbsp;2 min</footer>
   <a class="entry-link" aria-label="post link to Factory Method with examples in Python" href="https://sukhdeepg.github.io/posts/factory-method/"></a>
 </article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/solid_principles.png" alt="solid_principles">
-</figure>
-  <header class="entry-header">
-    <h2>SOLID Principles with examples in Python
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>When we start our programming journey, with continuous practice and learning, writing code becomes easier. But, as we advance in our careers, it becomes equally important to learn how to maintain and help others maintain what we are writing. 1. Single Responsibility Principle Easy to understand. Every module, class, or function should only have a single responsibility or only one reason to change. But it’s difficult to practically implement because lines can get blurry during implementation....</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-03-21 23:07:07 +0530 IST'>March 21, 2023</span>&nbsp;·&nbsp;6 min</footer>
-  <a class="entry-link" aria-label="post link to SOLID Principles with examples in Python" href="https://sukhdeepg.github.io/posts/solid/"></a>
-</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://sukhdeepg.github.io/page/2/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://sukhdeepg.github.io/">Sukhdeep&#39;s Blog</a></span>
+    <span>&copy; 2023 <a href="https://sukhdeepg.github.io/">💾</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
