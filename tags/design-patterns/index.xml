@@ -61,7 +61,8 @@ class ShapeFactory: def create_shape(self, shape_type): if shape_type == &amp;#3
       <pubDate>Mon, 01 May 2023 11:10:03 +0530</pubDate>
       
       <guid>https://sukhdeepg.github.io/posts/factory-method/</guid>
-      <description>The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes. Let&amp;rsquo;s understand the above with an example:</description>
+      <description>The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes.
+What exactly does factory mean? &amp;ldquo;Factory&amp;rdquo; refers to an object that is responsible for creating another object.</description>
     </item>
     
   </channel>
