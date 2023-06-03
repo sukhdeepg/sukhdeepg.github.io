@@ -10,7 +10,17 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 16 May 2023 21:40:50 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 May 2023 09:33:49 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adapter with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/adapter/</link>
+      <pubDate>Wed, 24 May 2023 09:33:49 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/adapter/</guid>
+      <description>The adapter design pattern is a structural design pattern that allows objects that don&amp;rsquo;t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an &amp;ldquo;adapter&amp;rdquo;) which translates the interface of one class into an interface expected by clients.
+In real world, when one of our electrical appliance has a plug that won&amp;rsquo;t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance.</description>
+    </item>
+    
     <item>
       <title>Singleton with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/singleton/</link>

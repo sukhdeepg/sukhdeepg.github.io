@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Adapter with examples in Python | 💾</title>
+<meta name="keywords" content="fundamentals, low-level-design, design patterns">
+<meta name="description" content="The adapter design pattern is a structural design pattern that allows objects that don&rsquo;t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an &ldquo;adapter&rdquo;) which translates the interface of one class into an interface expected by clients.
+In real world, when one of our electrical appliance has a plug that won&rsquo;t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance.">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/posts/adapter/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/img/favicon_16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/img/favicon_32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Adapter with examples in Python" />
+<meta property="og:description" content="The adapter design pattern is a structural design pattern that allows objects that don&rsquo;t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an &ldquo;adapter&rdquo;) which translates the interface of one class into an interface expected by clients.
+In real world, when one of our electrical appliance has a plug that won&rsquo;t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sukhdeepg.github.io/posts/adapter/" />
+<meta property="og:image" content="https://sukhdeepg.github.io/img/adapter.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-24T09:33:49+05:30" />
+<meta property="article:modified_time" content="2023-05-24T09:33:49+05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sukhdeepg.github.io/img/adapter.png" />
+<meta name="twitter:title" content="Adapter with examples in Python"/>
+<meta name="twitter:description" content="The adapter design pattern is a structural design pattern that allows objects that don&rsquo;t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an &ldquo;adapter&rdquo;) which translates the interface of one class into an interface expected by clients.
+In real world, when one of our electrical appliance has a plug that won&rsquo;t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://sukhdeepg.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Adapter with examples in Python",
+      "item": "https://sukhdeepg.github.io/posts/adapter/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Adapter with examples in Python",
+  "name": "Adapter with examples in Python",
+  "description": "The adapter design pattern is a structural design pattern that allows objects that don\u0026rsquo;t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an \u0026ldquo;adapter\u0026rdquo;) which translates the interface of one class into an interface expected by clients.\nIn real world, when one of our electrical appliance has a plug that won\u0026rsquo;t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance.",
+  "keywords": [
+    "fundamentals", "low-level-design", "design patterns"
+  ],
+  "articleBody": "The adapter design pattern is a structural design pattern that allows objects that don’t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an “adapter”) which translates the interface of one class into an interface expected by clients.\nIn real world, when one of our electrical appliance has a plug that won’t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance. Here, this adapter is the adapter pattern.\nLet’s understand this with an example:\nclass Car: def __init__(self, model): self.model = model def start_engine(self): return f\"{self.model}'s engine started.\" def refuel(self): return f\"Refuelling {self.model}.\" Here, we have an ElectricCar with different interface than the Car:\nclass ElectricCar: def __init__(self, model): self.model = model def start_electric_engine(self): return f\"{self.model}'s electric engine started.\" def recharge_battery(self): return f\"Recharging {self.model}.\" Our existing system doesn’t know how to interact with ElectricCar object as it only knows how to work with Car object. To solve this, we’ll use the Adapter design pattern.\nLet’s create an ElectricCarAdapter because here we can see that Car and ElectricCar have similar purpose.\nclass ElectricCarAdapter: def __init__(self, electric_car): self.electric_car = electric_car def start_engine(self): return self.electric_car.start_electric_engine() def refuel(self): return self.electric_car.recharge_battery() Now, we can use ElectricCar object in the existing system similar to Car object.\ndef client_code(car): print(car.start_engine()) print(car.refuel()) if __name__ == \"__main__\": my_car = Car(\"PetrolCar\") client_code(my_car) my_electric_car = ElectricCarAdapter(ElectricCar(\"ModernEV\")) client_code(my_electric_car) Output:\nPetrolCar's engine started. Refuelling PetrolCar. ModernEV's electric engine started. Recharging ModernEV. Here, we saw that how Adapter pattern can enable code to work with classes that otherwise wouldn’t be compatible due to their interfaces.\nSome real world scenarios where Adapter pattern could be used:\nLegacy and modern systems: When there is a need to integrate our modern system with a very old legacy system where rewritting the complete legacy system is not feasible, we can use the Adapter pattern to create an interface to enable interaction between legacy and modern systems.\nWorking with Third-Party libraries: Sometimes, a library has an interface that doesn’t match our system’s interface. An adapter class can help translate the interface of the third-party library to the interface our system expects.\nHope the post have created some value. Peace!\n",
+  "wordCount" : "384",
+  "inLanguage": "en",
+  "image":"https://sukhdeepg.github.io/img/adapter.png","datePublished": "2023-05-24T09:33:49+05:30",
+  "dateModified": "2023-05-24T09:33:49+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sukhdeepg.github.io/posts/adapter/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "💾",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sukhdeepg.github.io/img/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Adapter with examples in Python
+    </h1>
+    <div class="post-meta"><span title='2023-05-24 09:33:49 +0530 IST'>May 24, 2023</span>&nbsp;·&nbsp;2 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/adapter.png" alt="adapter">
+        
+</figure>
+  <div class="post-content"><p>The adapter design pattern is a structural design pattern that allows objects that don&rsquo;t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an &ldquo;adapter&rdquo;) which translates the interface of one class into an interface expected by clients.</p>
+<p>In real world, when one of our electrical appliance has a plug that won&rsquo;t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance. Here, this adapter is the adapter pattern.</p>
+<p>Let&rsquo;s understand this with an example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">start_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">&#39;s engine started.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">refuel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Refuelling </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">.&#34;</span>
+</span></span></code></pre></div><p>Here, we have an <code>ElectricCar</code> with different interface than the <code>Car</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ElectricCar</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">start_electric_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">&#39;s electric engine started.&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">recharge_battery</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Recharging </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s2">.&#34;</span>
+</span></span></code></pre></div><p>Our existing system doesn&rsquo;t know how to interact with <code>ElectricCar</code> object as it only knows how to work with <code>Car</code> object. To solve this, we&rsquo;ll use the Adapter design pattern.</p>
+<p>Let&rsquo;s create an <code>ElectricCarAdapter</code> because here we can see that <code>Car</code> and <code>ElectricCar</code> have similar purpose.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ElectricCarAdapter</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">electric_car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">electric_car</span> <span class="o">=</span> <span class="n">electric_car</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">start_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">electric_car</span><span class="o">.</span><span class="n">start_electric_engine</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">refuel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">electric_car</span><span class="o">.</span><span class="n">recharge_battery</span><span class="p">()</span>
+</span></span></code></pre></div><p>Now, we can use <code>ElectricCar</code> object in the existing system similar to <code>Car</code> object.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">client_code</span><span class="p">(</span><span class="n">car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="o">.</span><span class="n">start_engine</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="o">.</span><span class="n">refuel</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">my_car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s2">&#34;PetrolCar&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">client_code</span><span class="p">(</span><span class="n">my_car</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">my_electric_car</span> <span class="o">=</span> <span class="n">ElectricCarAdapter</span><span class="p">(</span><span class="n">ElectricCar</span><span class="p">(</span><span class="s2">&#34;ModernEV&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">client_code</span><span class="p">(</span><span class="n">my_electric_car</span><span class="p">)</span>
+</span></span></code></pre></div><p>Output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">PetrolCar&#39;s engine started.
+</span></span><span class="line"><span class="cl">Refuelling PetrolCar.
+</span></span><span class="line"><span class="cl">ModernEV&#39;s electric engine started.
+</span></span><span class="line"><span class="cl">Recharging ModernEV.
+</span></span></code></pre></div><p>Here, we saw that how Adapter pattern can enable code to work with classes that otherwise wouldn&rsquo;t be compatible due to their interfaces.</p>
+<p>Some real world scenarios where Adapter pattern could be used:</p>
+<ol>
+<li>
+<p>Legacy and modern systems: When there is a need to integrate our modern system with a very old legacy system where rewritting the complete legacy system is not feasible, we can use the Adapter pattern to create an interface to enable interaction between legacy and modern systems.</p>
+</li>
+<li>
+<p>Working with Third-Party libraries: Sometimes, a library has an interface that doesn’t match our system’s interface. An adapter class can help translate the interface of the third-party library to the interface our system expects.</p>
+</li>
+</ol>
+<p>Hope the post have created some value. Peace!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://sukhdeepg.github.io/tags/fundamentals/">fundamentals</a></li>
+      <li><a href="https://sukhdeepg.github.io/tags/low-level-design/">low-level-design</a></li>
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design patterns</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://sukhdeepg.github.io/posts/singleton/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Singleton with examples in Python</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://sukhdeepg.github.io/">💾</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

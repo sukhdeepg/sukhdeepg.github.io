@@ -3,24 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://sukhdeepg.github.io/</loc>
-    <lastmod>2023-05-16T21:40:50+05:30</lastmod>
+    <lastmod>2023-05-24T09:33:49+05:30</lastmod>
+  </url><url>
+    <loc>https://sukhdeepg.github.io/posts/adapter/</loc>
+    <lastmod>2023-05-24T09:33:49+05:30</lastmod>
   </url><url>
     <loc>https://sukhdeepg.github.io/tags/design-patterns/</loc>
-    <lastmod>2023-05-16T21:40:50+05:30</lastmod>
+    <lastmod>2023-05-24T09:33:49+05:30</lastmod>
   </url><url>
     <loc>https://sukhdeepg.github.io/tags/fundamentals/</loc>
-    <lastmod>2023-05-16T21:40:50+05:30</lastmod>
+    <lastmod>2023-05-24T09:33:49+05:30</lastmod>
   </url><url>
     <loc>https://sukhdeepg.github.io/tags/low-level-design/</loc>
-    <lastmod>2023-05-16T21:40:50+05:30</lastmod>
+    <lastmod>2023-05-24T09:33:49+05:30</lastmod>
   </url><url>
     <loc>https://sukhdeepg.github.io/posts/</loc>
-    <lastmod>2023-05-16T21:40:50+05:30</lastmod>
-  </url><url>
-    <loc>https://sukhdeepg.github.io/posts/singleton/</loc>
-    <lastmod>2023-05-16T21:40:50+05:30</lastmod>
+    <lastmod>2023-05-24T09:33:49+05:30</lastmod>
   </url><url>
     <loc>https://sukhdeepg.github.io/tags/</loc>
+    <lastmod>2023-05-24T09:33:49+05:30</lastmod>
+  </url><url>
+    <loc>https://sukhdeepg.github.io/posts/singleton/</loc>
     <lastmod>2023-05-16T21:40:50+05:30</lastmod>
   </url><url>
     <loc>https://sukhdeepg.github.io/posts/prototype/</loc>

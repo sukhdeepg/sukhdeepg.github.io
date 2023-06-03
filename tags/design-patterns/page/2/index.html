@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Posts | 💾</title>
+<title>design patterns | 💾</title>
 <meta name="keywords" content="">
-<meta name="description" content="Posts - 💾">
+<meta name="description" content="Blog">
 <meta name="author" content="">
-<link rel="canonical" href="https://sukhdeepg.github.io/posts/">
+<link rel="canonical" href="https://sukhdeepg.github.io/tags/design-patterns/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://sukhdeepg.github.io/img/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/img/favicon_16.png">
@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://sukhdeepg.github.io/posts/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://sukhdeepg.github.io/tags/design-patterns/index.xml">
 <noscript>
     <style>
         #theme-toggle,
@@ -55,32 +55,17 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Posts" />
+</noscript><meta property="og:title" content="design patterns" />
 <meta property="og:description" content="Blog" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://sukhdeepg.github.io/posts/" /><meta property="og:image" content="https://sukhdeepg.github.io/"/>
+<meta property="og:url" content="https://sukhdeepg.github.io/tags/design-patterns/" /><meta property="og:image" content="https://sukhdeepg.github.io/"/>
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://sukhdeepg.github.io/"/>
 
-<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:title" content="design patterns"/>
 <meta name="twitter:description" content="Blog"/>
 
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://sukhdeepg.github.io/posts/"
-    }
-  ]
-}
-</script>
 </head>
 
 <body class="list" id="top">
@@ -137,9 +122,9 @@
     </nav>
 </header>
 <main class="main"> 
-<header class="page-header"><div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a></div>
+<header class="page-header"><div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/tags/">Tags</a></div>
   <h1>
-    Posts
+    design patterns
     <a href="index.xml" title="RSS" aria-label="RSS">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round" height="23">
@@ -151,87 +136,24 @@
   </h1>
 </header>
 
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/adapter.png" alt="adapter">
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/factory_method.png" alt="factory_method">
 </figure>
   <header class="entry-header">
-    <h2>Adapter with examples in Python
+    <h2>Factory Method with examples in Python
     </h2>
   </header>
   <div class="entry-content">
-    <p>The adapter design pattern is a structural design pattern that allows objects that don’t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an “adapter”) which translates the interface of one class into an interface expected by clients.
-In real world, when one of our electrical appliance has a plug that won’t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance....</p>
+    <p>The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes.
+What exactly does factory mean? “Factory” refers to an object that is responsible for creating another object....</p>
   </div>
-  <footer class="entry-footer"><span title='2023-05-24 09:33:49 +0530 IST'>May 24, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Adapter with examples in Python" href="https://sukhdeepg.github.io/posts/adapter/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/singleton.png" alt="singleton">
-</figure>
-  <header class="entry-header">
-    <h2>Singleton with examples in Python
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Singleton design pattern is a type of creational pattern which we use when we need to provide global access to an object. Basically, a class will only have one object.
-Let’s understand the above with an example:
-class Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super().__call__(*args, **kwargs) return cls._instances[cls] class Car(metaclass=Singleton): def __init__(self, make, model, year): self.make = make self.model = model self....</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-05-16 21:40:50 +0530 IST'>May 16, 2023</span>&nbsp;·&nbsp;1 min</footer>
-  <a class="entry-link" aria-label="post link to Singleton with examples in Python" href="https://sukhdeepg.github.io/posts/singleton/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/prototype.png" alt="prototype">
-</figure>
-  <header class="entry-header">
-    <h2>Prototype with examples in Python
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>The Prototype Design Pattern is a creational design pattern that involves duplicating or “cloning” existing objects to create new ones, rather than creating new objects from scratch. This is useful when object creation is time-consuming or complex. This means, instead of creating a new object and setting it up, we make a copy of an existing object and modify it as needed.
-Let’s understand the above with an example:
-import copy class Car: def __init__(self, model, color, engine): self....</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-05-12 14:33:06 +0530 IST'>May 12, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Prototype with examples in Python" href="https://sukhdeepg.github.io/posts/prototype/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/builder.png" alt="builder">
-</figure>
-  <header class="entry-header">
-    <h2>Builder with examples in Python
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>The Builder design pattern is a method for constructing complex objects step-by-step, allowing you to create different configurations or variations of the object without altering the main class representing the object. It simplifies object creation by providing a clear and flexible way to build objects with multiple options or components.
-Let’s understand the above with an example:
-class CarBuilder: def __init__(self): self.car = Car() def set_wheels(self, wheels): self.car.wheels = wheels return self def set_color(self, color): self....</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-05-08 23:06:55 +0530 IST'>May 8, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Builder with examples in Python" href="https://sukhdeepg.github.io/posts/builder/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/abstract_factory.png" alt="abstract_factory">
-</figure>
-  <header class="entry-header">
-    <h2>Abstract Factory with examples in Python
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Abstract Factory is a creational design pattern that helps create groups of related objects without knowing their specific classes. It’s particularly useful when we need to create objects that belong to a family, but we don’t care about the specific implementation.
-First, let’s understand create groups of related objects without knowing their specific classes with a small example:
-class ShapeFactory: def create_shape(self, shape_type): if shape_type == &#39;circle&#39;: return Circle() elif shape_type == &#39;square&#39;: return Square() elif shape_type == &#39;triangle&#39;: return Triangle() factory = ShapeFactory() shape1 = factory....</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-05-07 14:44:52 +0530 IST'>May 7, 2023</span>&nbsp;·&nbsp;4 min</footer>
-  <a class="entry-link" aria-label="post link to Abstract Factory with examples in Python" href="https://sukhdeepg.github.io/posts/abstract-factory/"></a>
+  <footer class="entry-footer"><span title='2023-05-01 11:10:03 +0530 IST'>May 1, 2023</span>&nbsp;·&nbsp;2 min</footer>
+  <a class="entry-link" aria-label="post link to Factory Method with examples in Python" href="https://sukhdeepg.github.io/posts/factory-method/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="next" href="https://sukhdeepg.github.io/posts/page/2/">Next&nbsp;&nbsp;»
+    <a class="prev" href="https://sukhdeepg.github.io/tags/design-patterns/">
+      «&nbsp;Prev&nbsp;
     </a>
   </nav>
 </footer>
