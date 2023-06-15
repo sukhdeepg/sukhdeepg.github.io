@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Composite with examples in Python | 💾</title>
+<meta name="keywords" content="fundamentals, low-level-design, design patterns">
+<meta name="description" content="The Composite Design Pattern is a structural design pattern that lets us compose objects into tree structures to represent part-whole hierarchies. To expand this further: This pattern is all about creating objects that have other objects inside them. Let&rsquo;s break down the last sentence further:
+Compose objects into tree structures: This means that we&rsquo;re making some objects that contain other objects. This is similar to how a family tree works: a parent can have children, and those children can also be parents to their own children.">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/posts/composite/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/img/favicon_16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/img/favicon_32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Composite with examples in Python" />
+<meta property="og:description" content="The Composite Design Pattern is a structural design pattern that lets us compose objects into tree structures to represent part-whole hierarchies. To expand this further: This pattern is all about creating objects that have other objects inside them. Let&rsquo;s break down the last sentence further:
+Compose objects into tree structures: This means that we&rsquo;re making some objects that contain other objects. This is similar to how a family tree works: a parent can have children, and those children can also be parents to their own children." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sukhdeepg.github.io/posts/composite/" />
+<meta property="og:image" content="https://sukhdeepg.github.io/img/composite.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-13T20:28:09+05:30" />
+<meta property="article:modified_time" content="2023-06-13T20:28:09+05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sukhdeepg.github.io/img/composite.png" />
+<meta name="twitter:title" content="Composite with examples in Python"/>
+<meta name="twitter:description" content="The Composite Design Pattern is a structural design pattern that lets us compose objects into tree structures to represent part-whole hierarchies. To expand this further: This pattern is all about creating objects that have other objects inside them. Let&rsquo;s break down the last sentence further:
+Compose objects into tree structures: This means that we&rsquo;re making some objects that contain other objects. This is similar to how a family tree works: a parent can have children, and those children can also be parents to their own children."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://sukhdeepg.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Composite with examples in Python",
+      "item": "https://sukhdeepg.github.io/posts/composite/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Composite with examples in Python",
+  "name": "Composite with examples in Python",
+  "description": "The Composite Design Pattern is a structural design pattern that lets us compose objects into tree structures to represent part-whole hierarchies. To expand this further: This pattern is all about creating objects that have other objects inside them. Let\u0026rsquo;s break down the last sentence further:\nCompose objects into tree structures: This means that we\u0026rsquo;re making some objects that contain other objects. This is similar to how a family tree works: a parent can have children, and those children can also be parents to their own children.",
+  "keywords": [
+    "fundamentals", "low-level-design", "design patterns"
+  ],
+  "articleBody": "The Composite Design Pattern is a structural design pattern that lets us compose objects into tree structures to represent part-whole hierarchies. To expand this further: This pattern is all about creating objects that have other objects inside them. Let’s break down the last sentence further:\nCompose objects into tree structures: This means that we’re making some objects that contain other objects. This is similar to how a family tree works: a parent can have children, and those children can also be parents to their own children. In computer science, this is referred to as a “tree” structure.\nTo represent part-whole hierarchies: This means that the objects that are inside other objects are considered part of the larger object. It’s a way to represent a hierarchy or relationship between things. Like in a car, an engine, wheels, and a body are parts of the car as a whole. The car is the “whole”, and the engine, wheels, and body are the “parts”.\nSo in simple terms, the Composite Design Pattern is a way to make complex objects that are made up of other smaller objects, and this pattern allows us to organize these objects in a way that represents a hierarchy or relationship between them.\nLet’s understand this with an example:\nfrom abc import ABC, abstractmethod from typing import List class CarComponent(ABC): @abstractmethod def operation(self) -\u003e str: pass class LeafElement(CarComponent): def __init__(self, name): self.name = name def operation(self) -\u003e str: return self.name class Composite(CarComponent): def __init__(self, name) -\u003e None: self.name = name self._children: List[CarComponent] = [] def add(self, component: CarComponent) -\u003e None: self._children.append(component) def remove(self, component: CarComponent) -\u003e None: self._children.remove(component) def operation(self) -\u003e str: results = [] for child in self._children: results.append(child.operation()) return f\"{self.name}: {', '.join(results)}\" if __name__ == \"__main__\": # simple components engine = LeafElement(\"Engine\") wheel1 = LeafElement(\"Wheel1\") wheel2 = LeafElement(\"Wheel2\") wheel3 = LeafElement(\"Wheel3\") wheel4 = LeafElement(\"Wheel4\") # complex components (composite) wheels = Composite(\"Wheels\") car = Composite(\"Car\") # tree structure wheels.add(wheel1) wheels.add(wheel2) wheels.add(wheel3) wheels.add(wheel4) car.add(engine) car.add(wheels) print(car.operation()) Output:\nCar: Engine, Wheels: Wheel1, Wheel2, Wheel3, Wheel4 Some real world scenarios where this design pattern can be used:\nFile Systems: A file system is a classic example of a Composite pattern. A directory can contain files or other directories. Here, ‘Directory’ is a Composite, and ‘File’ is a Leaf. GUI Widgets: In graphical applications, a container widget (like a window or a panel) can contain other widgets (like buttons and checkboxes) or even other containers. This is another case where the Composite pattern is useful. Hope the post have created some value. Peace!\n",
+  "wordCount" : "421",
+  "inLanguage": "en",
+  "image":"https://sukhdeepg.github.io/img/composite.png","datePublished": "2023-06-13T20:28:09+05:30",
+  "dateModified": "2023-06-13T20:28:09+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sukhdeepg.github.io/posts/composite/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "💾",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sukhdeepg.github.io/img/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Composite with examples in Python
+    </h1>
+    <div class="post-meta"><span title='2023-06-13 20:28:09 +0530 IST'>June 13, 2023</span>&nbsp;·&nbsp;2 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/composite.png" alt="composite">
+        
+</figure>
+  <div class="post-content"><p>The Composite Design Pattern is a structural design pattern that lets us compose objects into tree structures to represent part-whole hierarchies.
+To expand this further:
+This pattern is all about creating objects that have other objects inside them. Let&rsquo;s break down the last sentence further:</p>
+<ol>
+<li>
+<p><strong>Compose objects into tree structures</strong>: This means that we&rsquo;re making some objects that contain other objects. This is similar to how a family tree works: a parent can have children, and those children can also be parents to their own children. In computer science, this is referred to as a &ldquo;tree&rdquo; structure.</p>
+</li>
+<li>
+<p><strong>To represent part-whole hierarchies</strong>: This means that the objects that are inside other objects are considered part of the larger object. It&rsquo;s a way to represent a hierarchy or relationship between things. Like in a car, an engine, wheels, and a body are parts of the car as a whole. The car is the &ldquo;whole&rdquo;, and the engine, wheels, and body are the &ldquo;parts&rdquo;.</p>
+</li>
+</ol>
+<p>So in simple terms, the Composite Design Pattern is a way to make complex objects that are made up of other smaller objects, and this pattern allows us to organize these objects in a way that represents a hierarchy or relationship between them.</p>
+<p>Let&rsquo;s understand this with an example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CarComponent</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LeafElement</span><span class="p">(</span><span class="n">CarComponent</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Composite</span><span class="p">(</span><span class="n">CarComponent</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CarComponent</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">CarComponent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">CarComponent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">operation</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># simple components</span>
+</span></span><span class="line"><span class="cl">    <span class="n">engine</span> <span class="o">=</span> <span class="n">LeafElement</span><span class="p">(</span><span class="s2">&#34;Engine&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wheel1</span> <span class="o">=</span> <span class="n">LeafElement</span><span class="p">(</span><span class="s2">&#34;Wheel1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wheel2</span> <span class="o">=</span> <span class="n">LeafElement</span><span class="p">(</span><span class="s2">&#34;Wheel2&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wheel3</span> <span class="o">=</span> <span class="n">LeafElement</span><span class="p">(</span><span class="s2">&#34;Wheel3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wheel4</span> <span class="o">=</span> <span class="n">LeafElement</span><span class="p">(</span><span class="s2">&#34;Wheel4&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># complex components (composite)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wheels</span> <span class="o">=</span> <span class="n">Composite</span><span class="p">(</span><span class="s2">&#34;Wheels&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">car</span> <span class="o">=</span> <span class="n">Composite</span><span class="p">(</span><span class="s2">&#34;Car&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># tree structure</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wheels</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wheel1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wheels</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wheel2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wheels</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wheel3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wheels</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wheel4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">car</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">car</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wheels</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">car</span><span class="o">.</span><span class="n">operation</span><span class="p">())</span>
+</span></span></code></pre></div><p>Output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Car: Engine, Wheels: Wheel1, Wheel2, Wheel3, Wheel4
+</span></span></code></pre></div><p>Some real world scenarios where this design pattern can be used:</p>
+<ol>
+<li><strong>File Systems</strong>: A file system is a classic example of a Composite pattern. A directory can contain files or other directories. Here, &lsquo;Directory&rsquo; is a Composite, and &lsquo;File&rsquo; is a Leaf.</li>
+<li><strong>GUI Widgets</strong>: In graphical applications, a container widget (like a window or a panel) can contain other widgets (like buttons and checkboxes) or even other containers. This is another case where the Composite pattern is useful.</li>
+</ol>
+<p>Hope the post have created some value. Peace!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://sukhdeepg.github.io/tags/fundamentals/">fundamentals</a></li>
+      <li><a href="https://sukhdeepg.github.io/tags/low-level-design/">low-level-design</a></li>
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design patterns</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://sukhdeepg.github.io/posts/bridge/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Bridge with examples in Python</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://sukhdeepg.github.io/">💾</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
