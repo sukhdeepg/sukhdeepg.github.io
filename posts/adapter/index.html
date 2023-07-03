@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Adapter with examples in Python | 💾</title>
-<meta name="keywords" content="fundamentals, low-level-design, design patterns">
+<meta name="keywords" content="design-patterns">
 <meta name="description" content="The adapter design pattern is a structural design pattern that allows objects that don&rsquo;t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an &ldquo;adapter&rdquo;) which translates the interface of one class into an interface expected by clients.
 In real world, when one of our electrical appliance has a plug that won&rsquo;t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance.">
 <meta name="author" content="">
@@ -99,7 +99,7 @@ In real world, when one of our electrical appliance has a plug that won&rsquo;t 
   "name": "Adapter with examples in Python",
   "description": "The adapter design pattern is a structural design pattern that allows objects that don\u0026rsquo;t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an \u0026ldquo;adapter\u0026rdquo;) which translates the interface of one class into an interface expected by clients.\nIn real world, when one of our electrical appliance has a plug that won\u0026rsquo;t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance.",
   "keywords": [
-    "fundamentals", "low-level-design", "design patterns"
+    "design-patterns"
   ],
   "articleBody": "The adapter design pattern is a structural design pattern that allows objects that don’t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an “adapter”) which translates the interface of one class into an interface expected by clients.\nIn real world, when one of our electrical appliance has a plug that won’t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance. Here, this adapter is the adapter pattern.\nLet’s understand this with an example:\nclass Car: def __init__(self, model): self.model = model def start_engine(self): return f\"{self.model}'s engine started.\" def refuel(self): return f\"Refuelling {self.model}.\" Here, we have an ElectricCar with different interface than the Car:\nclass ElectricCar: def __init__(self, model): self.model = model def start_electric_engine(self): return f\"{self.model}'s electric engine started.\" def recharge_battery(self): return f\"Recharging {self.model}.\" Our existing system doesn’t know how to interact with ElectricCar object as it only knows how to work with Car object. To solve this, we’ll use the Adapter design pattern.\nLet’s create an ElectricCarAdapter because here we can see that Car and ElectricCar have similar purpose.\nclass ElectricCarAdapter: def __init__(self, electric_car): self.electric_car = electric_car def start_engine(self): return self.electric_car.start_electric_engine() def refuel(self): return self.electric_car.recharge_battery() Now, we can use ElectricCar object in the existing system similar to Car object.\ndef client_code(car): print(car.start_engine()) print(car.refuel()) if __name__ == \"__main__\": my_car = Car(\"PetrolCar\") client_code(my_car) my_electric_car = ElectricCarAdapter(ElectricCar(\"ModernEV\")) client_code(my_electric_car) Output:\nPetrolCar's engine started. Refuelling PetrolCar. ModernEV's electric engine started. Recharging ModernEV. Here, we saw that how Adapter pattern can enable code to work with classes that otherwise wouldn’t be compatible due to their interfaces.\nSome real world scenarios where Adapter pattern could be used:\nLegacy and modern systems: When there is a need to integrate our modern system with a very old legacy system where rewritting the complete legacy system is not feasible, we can use the Adapter pattern to create an interface to enable interaction between legacy and modern systems.\nWorking with Third-Party libraries: Sometimes, a library has an interface that doesn’t match our system’s interface. An adapter class can help translate the interface of the third-party library to the interface our system expects.\nHope the post have created some value. Peace!\n",
   "wordCount" : "384",
@@ -256,9 +256,7 @@ In real world, when one of our electrical appliance has a plug that won&rsquo;t 
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://sukhdeepg.github.io/tags/fundamentals/">fundamentals</a></li>
-      <li><a href="https://sukhdeepg.github.io/tags/low-level-design/">low-level-design</a></li>
-      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design patterns</a></li>
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design-patterns</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://sukhdeepg.github.io/posts/bridge/">

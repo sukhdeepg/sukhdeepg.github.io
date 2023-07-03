@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Bridge with examples in Python | 💾</title>
-<meta name="keywords" content="fundamentals, low-level-design, design patterns">
+<meta name="keywords" content="design-patterns">
 <meta name="description" content="The Bridge Design Pattern is a structural design pattern that aims to separate what a system does from how it does it, so we can change the &lsquo;what&rsquo; and the &lsquo;how&rsquo; independently.
 In other words, it organizes code in a way that lets us modify the operations a system can perform (like starting a car engine), and the details of how those operations are performed (like whether it&rsquo;s a petrol or electric engine), separately.">
 <meta name="author" content="">
@@ -99,7 +99,7 @@ In other words, it organizes code in a way that lets us modify the operations a 
   "name": "Bridge with examples in Python",
   "description": "The Bridge Design Pattern is a structural design pattern that aims to separate what a system does from how it does it, so we can change the \u0026lsquo;what\u0026rsquo; and the \u0026lsquo;how\u0026rsquo; independently.\nIn other words, it organizes code in a way that lets us modify the operations a system can perform (like starting a car engine), and the details of how those operations are performed (like whether it\u0026rsquo;s a petrol or electric engine), separately.",
   "keywords": [
-    "fundamentals", "low-level-design", "design patterns"
+    "design-patterns"
   ],
   "articleBody": "The Bridge Design Pattern is a structural design pattern that aims to separate what a system does from how it does it, so we can change the ‘what’ and the ‘how’ independently.\nIn other words, it organizes code in a way that lets us modify the operations a system can perform (like starting a car engine), and the details of how those operations are performed (like whether it’s a petrol or electric engine), separately. This makes the code easier to update and manage.\nIt’s helpful when we have a monolithic class and we want to divide it further to simplify maintenance.\nImagine that there are two dimensions: “car type” and “car engine type”. If we want to create classes for every possible combination, there will be quite a few (sedan with petrol engine, sedan with electric engine, SUV with petrol engine, SUV with electric engine, etc.). Instead, we can separate these two dimensions into different class hierarchies, and then combine them - effectively “building a bridge” between “car type” and “car engine type”.\nLet’s understand this with an example:\nfrom abc import ABC, abstractmethod class Engine(ABC): @abstractmethod def start_engine(self): pass class PetrolEngine(Engine): def start_engine(self): return \"Starting the petrol engine\" class ElectricEngine(Engine): def start_engine(self): return \"Starting the electric engine\" class Car(ABC): def __init__(self, engine: Engine): self._engine = engine @abstractmethod def start_car(self): pass class Sedan(Car): def start_car(self): return f\"Sedan: {self._engine.start_engine()}\" class SUV(Car): def start_car(self): return f\"SUV: {self._engine.start_engine()}\" sedan_with_petrol_engine = Sedan(PetrolEngine()) suv_with_electric_engine = SUV(ElectricEngine()) print(sedan_with_petrol_engine.start_car()) print(suv_with_electric_engine.start_car()) Output:\nSedan: Starting the petrol engine SUV: Starting the electric engine In this code, Car and Engine are the two dimensions. Car is the ‘abstraction’ and Engine is the ‘implementation’. This way, adding a new car type or a new engine type does not affect each other.\nThe Bridge Design Pattern is handy in many scenarios where we want to keep the high-level operations in a system separate from the low-level details. This pattern is used in GUI systems to support multiple operating systems, in software to communicate using different protocols with hardware devices, in database interactions to support various types of databases, and in media players to decode different file formats. Essentially, the Bridge pattern is about segregating “what” a system does from “how” it does it, allowing both to evolve independently.\nHope the post have created some value. Peace!\n",
   "wordCount" : "384",
@@ -243,9 +243,7 @@ In other words, it organizes code in a way that lets us modify the operations a 
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://sukhdeepg.github.io/tags/fundamentals/">fundamentals</a></li>
-      <li><a href="https://sukhdeepg.github.io/tags/low-level-design/">low-level-design</a></li>
-      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design patterns</a></li>
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design-patterns</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://sukhdeepg.github.io/posts/composite/">

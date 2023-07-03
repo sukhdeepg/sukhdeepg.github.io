@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Singleton with examples in Python | 💾</title>
-<meta name="keywords" content="fundamentals, low-level-design, design patterns">
+<meta name="keywords" content="design-patterns">
 <meta name="description" content="Singleton design pattern is a type of creational pattern which we use when we need to provide global access to an object. Basically, a class will only have one object.
 Let&rsquo;s understand the above with an example:
 class Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super().__call__(*args, **kwargs) return cls._instances[cls] class Car(metaclass=Singleton): def __init__(self, make, model, year): self.make = make self.model = model self.">
@@ -102,7 +102,7 @@ class Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cl
   "name": "Singleton with examples in Python",
   "description": "Singleton design pattern is a type of creational pattern which we use when we need to provide global access to an object. Basically, a class will only have one object.\nLet\u0026rsquo;s understand the above with an example:\nclass Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super().__call__(*args, **kwargs) return cls._instances[cls] class Car(metaclass=Singleton): def __init__(self, make, model, year): self.make = make self.model = model self.",
   "keywords": [
-    "fundamentals", "low-level-design", "design patterns"
+    "design-patterns"
   ],
   "articleBody": "Singleton design pattern is a type of creational pattern which we use when we need to provide global access to an object. Basically, a class will only have one object.\nLet’s understand the above with an example:\nclass Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super().__call__(*args, **kwargs) return cls._instances[cls] class Car(metaclass=Singleton): def __init__(self, make, model, year): self.make = make self.model = model self.year = year car1 = Car(\"Company1\", \"Car1\", 2023) car2 = Car(\"Company2\", \"Car2\", 2023) print(car1 is car2) Output:\nTrue Here, Singleton is a metaclass that ensures that we only ever create one instance of Car. When we call Car() to create an instance, the call method of the metaclass is invoked. If an instance of Car doesn’t exist, it creates one and stores it in _instances. If it already exists, it returns the existing one.\nPractical applications of Singleton design pattern includes creating object for logging, DB connection, shared resources (e.g. class having a counter), etc. This helps us ensure consistency.\nHope the post have created some value. Peace!\n",
   "wordCount" : "178",
@@ -223,9 +223,7 @@ class Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cl
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://sukhdeepg.github.io/tags/fundamentals/">fundamentals</a></li>
-      <li><a href="https://sukhdeepg.github.io/tags/low-level-design/">low-level-design</a></li>
-      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design patterns</a></li>
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design-patterns</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://sukhdeepg.github.io/posts/adapter/">
