@@ -10,7 +10,16 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 03 Feb 2024 20:25:19 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Feb 2024 23:03:34 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Facade with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/facade/</link>
+      <pubDate>Tue, 06 Feb 2024 23:03:34 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/facade/</guid>
+      <description>The Facade Design Pattern is like having a remote control for various devices in our home. Imagine we have a TV, a sound system, and lights in our living room. Instead of turning on each one separately, we use a remote control (the &amp;ldquo;facade&amp;rdquo;) that has a single &amp;ldquo;movie mode&amp;rdquo; button. When we press it, the remote turns on the TV, sets the sound system to the right volume, and dims the lights all at once.</description>
+    </item>
+    
     <item>
       <title>Decorator with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/decorator/</link>
