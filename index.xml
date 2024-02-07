@@ -10,7 +10,17 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 06 Feb 2024 23:03:34 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Feb 2024 20:51:28 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flyweight with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/flyweight/</link>
+      <pubDate>Wed, 07 Feb 2024 20:51:28 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/flyweight/</guid>
+      <description>The flyweight design pattern is a way to save memory by sharing as much data as possible with similar objects. It&amp;rsquo;s like having a library where instead of buying a book every time we want to read it, we just borrow it, read it, and return it. This way, many people can read the book, but there&amp;rsquo;s only one copy that everyone shares.
+In real world, imagine we have a company that creates business cards.</description>
+    </item>
+    
     <item>
       <title>Facade with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/facade/</link>
