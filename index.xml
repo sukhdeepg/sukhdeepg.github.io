@@ -10,7 +10,16 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 07 Feb 2024 20:51:28 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Feb 2024 21:57:40 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Proxy with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/proxy/</link>
+      <pubDate>Sat, 10 Feb 2024 21:57:40 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/proxy/</guid>
+      <description>The Proxy Design Pattern is like having a gatekeeper for an object, where the gatekeeper controls who can access the object and how they can use it. It&amp;rsquo;s like having a security guard for a building; the guard checks who the person is and decides if they can enter, and might also keep track of who comes in and out. This pattern lets us add a layer around an object that handles these checks and controls without changing the object itself.</description>
+    </item>
+    
     <item>
       <title>Flyweight with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/flyweight/</link>

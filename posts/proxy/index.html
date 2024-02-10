@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Proxy with examples in Python | 💾</title>
+<meta name="keywords" content="design-patterns">
+<meta name="description" content="The Proxy Design Pattern is like having a gatekeeper for an object, where the gatekeeper controls who can access the object and how they can use it. It&rsquo;s like having a security guard for a building; the guard checks who the person is and decides if they can enter, and might also keep track of who comes in and out. This pattern lets us add a layer around an object that handles these checks and controls without changing the object itself.">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/posts/proxy/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/img/favicon_16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/img/favicon_32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Proxy with examples in Python" />
+<meta property="og:description" content="The Proxy Design Pattern is like having a gatekeeper for an object, where the gatekeeper controls who can access the object and how they can use it. It&rsquo;s like having a security guard for a building; the guard checks who the person is and decides if they can enter, and might also keep track of who comes in and out. This pattern lets us add a layer around an object that handles these checks and controls without changing the object itself." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sukhdeepg.github.io/posts/proxy/" />
+<meta property="og:image" content="https://sukhdeepg.github.io/img/proxy.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-10T21:57:40+05:30" />
+<meta property="article:modified_time" content="2024-02-10T21:57:40+05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sukhdeepg.github.io/img/proxy.png" />
+<meta name="twitter:title" content="Proxy with examples in Python"/>
+<meta name="twitter:description" content="The Proxy Design Pattern is like having a gatekeeper for an object, where the gatekeeper controls who can access the object and how they can use it. It&rsquo;s like having a security guard for a building; the guard checks who the person is and decides if they can enter, and might also keep track of who comes in and out. This pattern lets us add a layer around an object that handles these checks and controls without changing the object itself."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://sukhdeepg.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Proxy with examples in Python",
+      "item": "https://sukhdeepg.github.io/posts/proxy/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Proxy with examples in Python",
+  "name": "Proxy with examples in Python",
+  "description": "The Proxy Design Pattern is like having a gatekeeper for an object, where the gatekeeper controls who can access the object and how they can use it. It\u0026rsquo;s like having a security guard for a building; the guard checks who the person is and decides if they can enter, and might also keep track of who comes in and out. This pattern lets us add a layer around an object that handles these checks and controls without changing the object itself.",
+  "keywords": [
+    "design-patterns"
+  ],
+  "articleBody": "The Proxy Design Pattern is like having a gatekeeper for an object, where the gatekeeper controls who can access the object and how they can use it. It’s like having a security guard for a building; the guard checks who the person is and decides if they can enter, and might also keep track of who comes in and out. This pattern lets us add a layer around an object that handles these checks and controls without changing the object itself. So, it’s a way to manage access and interactions with the object in a controlled manner.\nImagine we are trying to buy a ticket for a concert. Instead of buying the ticket directly from the concert hall, we go through a ticketing agent. This agent provides us with additional services such as finding the best seats, handling the payment process, and even giving us some advice on the event. Here, the ticketing agent acts as a proxy between us and the concert hall. The agent controls access to the concert hall’s tickets and adds some level of indirection, which can be beneficial for both us and the concert hall.\nIn this example, we have a Car class, and we want to control access to this class with a CarProxy class.\nclass Car: def drive(self): print(\"Car has been driven\") class CarProxy: def __init__(self, driver_age): self.driver_age = driver_age self.real_car = Car() def drive(self): if self.driver_age \u003e= 18: self.real_car.drive() else: print(\"Sorry, the driver is too young to drive.\") # Usage young_driver = CarProxy(driver_age=16) young_driver.drive() # Output: Sorry, the driver is too young to drive. adult_driver = CarProxy(driver_age=25) adult_driver.drive() # Output: Car has been driven In this example, the CarProxy controls access to the Car’s drive method based on the driver’s age, acting as a protective proxy.\nOutput:\nSorry, the driver is too young to drive. Car has been driven In software engineering, the Proxy Design Pattern is often applied to manage database connections efficiently, serving as a real-world example of its utility. A Database Connection Proxy acts as an intermediary between an application and its database, handling tasks like connection pooling to reduce the overhead of repeatedly opening and closing connections, caching frequent queries to improve performance, enforcing access control to enhance security, and logging queries for monitoring and analytics purposes. This approach is particularly beneficial in high-traffic scenarios, such as an e-commerce platform, where it ensures scalability, security, and performance by managing how the application interacts with the database, demonstrating the pattern’s capability to offer a flexible and effective solution for resource management. ProxySQL is a good example of this.\n",
+  "wordCount" : "429",
+  "inLanguage": "en",
+  "image":"https://sukhdeepg.github.io/img/proxy.png","datePublished": "2024-02-10T21:57:40+05:30",
+  "dateModified": "2024-02-10T21:57:40+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sukhdeepg.github.io/posts/proxy/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "💾",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sukhdeepg.github.io/img/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Proxy with examples in Python
+    </h1>
+    <div class="post-meta"><span title='2024-02-10 21:57:40 +0530 IST'>February 10, 2024</span>&nbsp;·&nbsp;3 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/proxy.png" alt="decorator">
+        
+</figure>
+  <div class="post-content"><p>The Proxy Design Pattern is like having a gatekeeper for an object, where the gatekeeper controls who can access the object and how they can use it. It&rsquo;s like having a security guard for a building; the guard checks who the person is and decides if they can enter, and might also keep track of who comes in and out. This pattern lets us add a layer around an object that handles these checks and controls without changing the object itself. So, it&rsquo;s a way to manage access and interactions with the object in a controlled manner.</p>
+<p>Imagine we are trying to buy a ticket for a concert. Instead of buying the ticket directly from the concert hall, we go through a ticketing agent. This agent provides us with additional services such as finding the best seats, handling the payment process, and even giving us some advice on the event. Here, the ticketing agent acts as a proxy between us and the concert hall. The agent controls access to the concert hall&rsquo;s tickets and adds some level of indirection, which can be beneficial for both us and the concert hall.</p>
+<p>In this example, we have a <code>Car</code> class, and we want to control access to this class with a <code>CarProxy</code> class.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">drive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Car has been driven&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CarProxy</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver_age</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">driver_age</span> <span class="o">=</span> <span class="n">driver_age</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">real_car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">drive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver_age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">real_car</span><span class="o">.</span><span class="n">drive</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Sorry, the driver is too young to drive.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Usage</span>
+</span></span><span class="line"><span class="cl"><span class="n">young_driver</span> <span class="o">=</span> <span class="n">CarProxy</span><span class="p">(</span><span class="n">driver_age</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">young_driver</span><span class="o">.</span><span class="n">drive</span><span class="p">()</span>  <span class="c1"># Output: Sorry, the driver is too young to drive.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">adult_driver</span> <span class="o">=</span> <span class="n">CarProxy</span><span class="p">(</span><span class="n">driver_age</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">adult_driver</span><span class="o">.</span><span class="n">drive</span><span class="p">()</span>  <span class="c1"># Output: Car has been driven</span>
+</span></span></code></pre></div><p>In this example, the <code>CarProxy</code> controls access to the <code>Car</code>&rsquo;s drive method based on the driver&rsquo;s age, acting as a protective proxy.</p>
+<p>Output:</p>
+<pre tabindex="0"><code>Sorry, the driver is too young to drive.
+Car has been driven
+</code></pre><p>In software engineering, the Proxy Design Pattern is often applied to manage database connections efficiently, serving as a real-world example of its utility. A Database Connection Proxy acts as an intermediary between an application and its database, handling tasks like connection pooling to reduce the overhead of repeatedly opening and closing connections, caching frequent queries to improve performance, enforcing access control to enhance security, and logging queries for monitoring and analytics purposes. This approach is particularly beneficial in high-traffic scenarios, such as an e-commerce platform, where it ensures scalability, security, and performance by managing how the application interacts with the database, demonstrating the pattern&rsquo;s capability to offer a flexible and effective solution for resource management. ProxySQL is a good example of this.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design-patterns</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://sukhdeepg.github.io/posts/flyweight/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Flyweight with examples in Python</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://sukhdeepg.github.io/">💾</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
