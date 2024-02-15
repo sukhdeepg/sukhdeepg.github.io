@@ -10,7 +10,16 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 10 Feb 2024 21:57:40 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Feb 2024 10:18:29 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chain of Responsibility with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/chain-of-responsibility/</link>
+      <pubDate>Wed, 14 Feb 2024 10:18:29 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/chain-of-responsibility/</guid>
+      <description>The Chain of Responsibility pattern is a design approach in programming that lets us pass requests through a series of processing units or &amp;ldquo;handlers&amp;rdquo;. Each handler is a piece of code or a function that has the chance to process the request, or pass it along to the next handler in the sequence. This method helps in organizing code in a way that separates the request sender from its processors, allowing for dynamic handling of requests based on runtime conditions.</description>
+    </item>
+    
     <item>
       <title>Proxy with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/proxy/</link>
