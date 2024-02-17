@@ -10,7 +10,17 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 14 Feb 2024 10:18:29 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Feb 2024 22:48:29 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Command with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/command/</link>
+      <pubDate>Sat, 17 Feb 2024 22:48:29 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/command/</guid>
+      <description>The Command design pattern is a way to organize actions in software so that the requests (like user commands or system operations) are turned into objects. This makes it easier to manage and modify these requests, like putting them in a queue or undoing them. It also helps in separating the part of the software that asks for something to be done from the part that actually does it.
+Imagine a restaurant where customers (the client) give their orders (the command) to a waiter (the invoker) who then forwards the orders to the kitchen (the receiver) to prepare the meal.</description>
+    </item>
+    
     <item>
       <title>Chain of Responsibility with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/chain-of-responsibility/</link>
