@@ -10,7 +10,16 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 23 Feb 2024 21:58:50 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Feb 2024 16:02:41 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Memento with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/memento/</link>
+      <pubDate>Sun, 25 Feb 2024 16:02:41 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/memento/</guid>
+      <description>The Memento design pattern is like a save point for an object&amp;rsquo;s information, allowing that object to be returned to its previous state later on. This is similar to saving a game and then loading it back up; we get everything back as it was, without needing to know how the game internally manages all its details. This approach is very useful in making features like the &amp;lsquo;undo&amp;rsquo; option in many software applications, as it helps reverse actions without disrupting the private workings of the objects involved.</description>
+    </item>
+    
     <item>
       <title>Mediator with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/mediator/</link>
