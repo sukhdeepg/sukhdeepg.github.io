@@ -10,7 +10,17 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 25 Feb 2024 16:02:41 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Feb 2024 20:07:55 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Observer with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/observer/</link>
+      <pubDate>Sun, 25 Feb 2024 20:07:55 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/observer/</guid>
+      <description>The Observer design pattern is a behavioral design pattern where an object, known as the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods. It&amp;rsquo;s commonly used to implement distributed event handling systems.
+A real-world analogy for the Observer pattern is a subscription to a newspaper or magazine. In this analogy, the newspaper is the subject, and the subscribers are the observers.</description>
+    </item>
+    
     <item>
       <title>Memento with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/memento/</link>
