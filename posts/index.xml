@@ -10,7 +10,17 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 25 Feb 2024 20:07:55 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Feb 2024 20:24:32 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>State with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/state/</link>
+      <pubDate>Sun, 25 Feb 2024 20:24:32 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/state/</guid>
+      <description>This one can be bit tricky to understand first, but please read through the complete post, you&amp;rsquo;ll get it.
+The State design pattern is a method used in programming to allow an object to behave differently depending on its internal condition (refers to the current situation or status of an object, determined by its properties or attributes.) or &amp;ldquo;state&amp;rdquo;. This pattern involves creating different &amp;ldquo;state&amp;rdquo; objects for each possible condition, and a main object, called the &amp;ldquo;context&amp;rdquo;, which changes its behavior based on whichever state object is currently active.</description>
+    </item>
+    
     <item>
       <title>Observer with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/observer/</link>
