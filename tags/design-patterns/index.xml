@@ -10,7 +10,17 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 25 Feb 2024 20:24:32 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Feb 2024 17:19:34 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Strategy with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/strategy/</link>
+      <pubDate>Mon, 26 Feb 2024 17:19:34 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/strategy/</guid>
+      <description>The Strategy design pattern lets us change the way an object behaves while the program is running. Imagine having a video game character that can switch tools like a hammer, a sword, or a shield based on what we choose during the game. Similarly, by using the Strategy pattern, we can change how an object acts on the fly, without stopping or changing the rest of our program.
+Consider a navigation app that suggests routes to the destination.</description>
+    </item>
+    
     <item>
       <title>State with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/state/</link>
