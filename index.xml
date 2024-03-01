@@ -10,7 +10,16 @@
       <link>https://sukhdeepg.github.io/</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 27 Feb 2024 23:13:18 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Mar 2024 21:49:21 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Visitor with examples in Python</title>
+      <link>https://sukhdeepg.github.io/posts/visitor/</link>
+      <pubDate>Fri, 01 Mar 2024 21:49:21 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/posts/visitor/</guid>
+      <description>The Visitor design pattern is like a tool that lets us add new features to our code without changing the original code. Imagine we have a bunch of different types of files on our computer (like documents, music, and videos), and we want to perform various tasks on them, like opening or scanning for viruses. Instead of adding new code to each file type, we create a &amp;ldquo;visitor&amp;rdquo; – a separate set of instructions or tool – that can interact with each type of file to perform the task.</description>
+    </item>
+    
     <item>
       <title>Template Method with examples in Python</title>
       <link>https://sukhdeepg.github.io/posts/template-method/</link>
