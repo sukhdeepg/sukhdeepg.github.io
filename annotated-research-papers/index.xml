@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Annotated-research-papers on 💾</title>
+    <link>https://sukhdeepg.github.io/annotated-research-papers/</link>
+    <description>Recent content in Annotated-research-papers on 💾</description>
+    <image>
+      <title>💾</title>
+      <url>https://sukhdeepg.github.io/</url>
+      <link>https://sukhdeepg.github.io/</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 26 May 2024 14:44:52 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/annotated-research-papers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Annotated research papers list</title>
+      <link>https://sukhdeepg.github.io/annotated-research-papers/annotated-research-papers-list/</link>
+      <pubDate>Sun, 26 May 2024 14:44:52 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/annotated-research-papers/annotated-research-papers-list/</guid>
+      <description> Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models Graph Machine Learning in the Era of Large Language Models (LLMs) </description>
+    </item>
+    
+  </channel>
+</rss>

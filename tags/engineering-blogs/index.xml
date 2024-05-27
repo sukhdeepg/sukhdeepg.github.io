@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>engineering-blogs on 💾</title>
+    <link>https://sukhdeepg.github.io/tags/engineering-blogs/</link>
+    <description>Recent content in engineering-blogs on 💾</description>
+    <image>
+      <title>💾</title>
+      <url>https://sukhdeepg.github.io/</url>
+      <link>https://sukhdeepg.github.io/</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 26 May 2024 15:10:01 +0319</lastBuildDate><atom:link href="https://sukhdeepg.github.io/tags/engineering-blogs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Engineering blogs list</title>
+      <link>https://sukhdeepg.github.io/engineering-blogs/engineering-blogs-list/</link>
+      <pubDate>Sun, 26 May 2024 15:10:01 +0319</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/engineering-blogs/engineering-blogs-list/</guid>
+      <description>Musings on building a Generative AI product The team aimed to improve job search and content on user&amp;rsquo;s feed by using generative AI. Allow faster access to information, connecting relevant content, offering advice, and more personalized experiences. Development Process: Overall Design: Implementation of Retrieval Augmented Generation (RAG) pipeline for efficient handling of user queries. Routing (Valid query check and selecting AI agent), retrieval (selecting which services to use), generation (generating the final response).</description>
+    </item>
+    
+  </channel>
+</rss>

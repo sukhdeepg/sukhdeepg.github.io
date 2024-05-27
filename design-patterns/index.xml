@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Design-patterns on 💾</title>
+    <link>https://sukhdeepg.github.io/design-patterns/</link>
+    <description>Recent content in Design-patterns on 💾</description>
+    <image>
+      <title>💾</title>
+      <url>https://sukhdeepg.github.io/</url>
+      <link>https://sukhdeepg.github.io/</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 01 Mar 2024 21:49:21 +0530</lastBuildDate><atom:link href="https://sukhdeepg.github.io/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Visitor with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/visitor/</link>
+      <pubDate>Fri, 01 Mar 2024 21:49:21 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/visitor/</guid>
+      <description>The Visitor design pattern is like a tool that lets us add new features to our code without changing the original code. Imagine we have a bunch of different types of files on our computer (like documents, music, and videos), and we want to perform various tasks on them, like opening or scanning for viruses. Instead of adding new code to each file type, we create a &amp;ldquo;visitor&amp;rdquo; – a separate set of instructions or tool – that can interact with each type of file to perform the task.</description>
+    </item>
+    
+    <item>
+      <title>Template Method with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/template-method/</link>
+      <pubDate>Tue, 27 Feb 2024 23:13:18 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/template-method/</guid>
+      <description>The Template Method design pattern is a behavioral design pattern that defines the program skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure. In simpler terms, it’s like a recipe with certain steps defined and fixed and allows the child classes to implement the specifics of these steps.
+Imagine the process of making a sandwich. The steps might include gathering ingredients, putting ingredients between bread, and serving the sandwich.</description>
+    </item>
+    
+    <item>
+      <title>Strategy with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/strategy/</link>
+      <pubDate>Mon, 26 Feb 2024 17:19:34 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/strategy/</guid>
+      <description>The Strategy design pattern lets us change the way an object behaves while the program is running. Imagine having a video game character that can switch tools like a hammer, a sword, or a shield based on what we choose during the game. Similarly, by using the Strategy pattern, we can change how an object acts on the fly, without stopping or changing the rest of our program.
+Consider a navigation app that suggests routes to the destination.</description>
+    </item>
+    
+    <item>
+      <title>State with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/state/</link>
+      <pubDate>Sun, 25 Feb 2024 20:24:32 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/state/</guid>
+      <description>This one can be bit tricky to understand first, but please read through the complete post, you&amp;rsquo;ll get it.
+The State design pattern is a method used in programming to allow an object to behave differently depending on its internal condition (refers to the current situation or status of an object, determined by its properties or attributes.) or &amp;ldquo;state&amp;rdquo;. This pattern involves creating different &amp;ldquo;state&amp;rdquo; objects for each possible condition, and a main object, called the &amp;ldquo;context&amp;rdquo;, which changes its behavior based on whichever state object is currently active.</description>
+    </item>
+    
+    <item>
+      <title>Observer with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/observer/</link>
+      <pubDate>Sun, 25 Feb 2024 20:07:55 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/observer/</guid>
+      <description>The Observer design pattern is a behavioral design pattern where an object, known as the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods. It&amp;rsquo;s commonly used to implement distributed event handling systems.
+A real-world analogy for the Observer pattern is a subscription to a newspaper or magazine. In this analogy, the newspaper is the subject, and the subscribers are the observers.</description>
+    </item>
+    
+    <item>
+      <title>Memento with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/memento/</link>
+      <pubDate>Sun, 25 Feb 2024 16:02:41 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/memento/</guid>
+      <description>The Memento design pattern is like a save point for an object&amp;rsquo;s information, allowing that object to be returned to its previous state later on. This is similar to saving a game and then loading it back up; we get everything back as it was, without needing to know how the game internally manages all its details. This approach is very useful in making features like the &amp;lsquo;undo&amp;rsquo; option in many software applications, as it helps reverse actions without disrupting the private workings of the objects involved.</description>
+    </item>
+    
+    <item>
+      <title>Mediator with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/mediator/</link>
+      <pubDate>Fri, 23 Feb 2024 21:58:50 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/mediator/</guid>
+      <description>The mediator design pattern is a behavioral design pattern that allows us to reduce chaotic dependencies between objects. The pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object. This helps to decrease the coupling between classes of objects and the complexity of their relationships.
+Imagine a typical airport control tower. The pilots do not communicate directly with each other; instead, they speak to the control tower.</description>
+    </item>
+    
+    <item>
+      <title>Iterator with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/iterator/</link>
+      <pubDate>Tue, 20 Feb 2024 08:27:41 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/iterator/</guid>
+      <description>The Iterator design pattern provides a standard way to loop through a collection of objects without exposing the underlying representation (array, list, map, etc.). It allows us to access elements sequentially without needing to understand the inner workings of the collection.
+Imagine we&amp;rsquo;re at a pancake house with a menu of different pancake types. We want to look through all the pancake types one by one to decide which one to order.</description>
+    </item>
+    
+    <item>
+      <title>Command with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/command/</link>
+      <pubDate>Sat, 17 Feb 2024 22:48:29 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/command/</guid>
+      <description>The Command design pattern is a way to organize actions in software so that the requests (like user commands or system operations) are turned into objects. This makes it easier to manage and modify these requests, like putting them in a queue or undoing them. It also helps in separating the part of the software that asks for something to be done from the part that actually does it.
+Imagine a restaurant where customers (the client) give their orders (the command) to a waiter (the invoker) who then forwards the orders to the kitchen (the receiver) to prepare the meal.</description>
+    </item>
+    
+    <item>
+      <title>Chain of Responsibility with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/chain-of-responsibility/</link>
+      <pubDate>Wed, 14 Feb 2024 10:18:29 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/chain-of-responsibility/</guid>
+      <description>The Chain of Responsibility pattern is a design approach in programming that lets us pass requests through a series of processing units or &amp;ldquo;handlers&amp;rdquo;. Each handler is a piece of code or a function that has the chance to process the request, or pass it along to the next handler in the sequence. This method helps in organizing code in a way that separates the request sender from its processors, allowing for dynamic handling of requests based on runtime conditions.</description>
+    </item>
+    
+    <item>
+      <title>Proxy with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/proxy/</link>
+      <pubDate>Sat, 10 Feb 2024 21:57:40 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/proxy/</guid>
+      <description>The Proxy Design Pattern is like having a gatekeeper for an object, where the gatekeeper controls who can access the object and how they can use it. It&amp;rsquo;s like having a security guard for a building; the guard checks who the person is and decides if they can enter, and might also keep track of who comes in and out. This pattern lets us add a layer around an object that handles these checks and controls without changing the object itself.</description>
+    </item>
+    
+    <item>
+      <title>Flyweight with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/flyweight/</link>
+      <pubDate>Wed, 07 Feb 2024 20:51:28 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/flyweight/</guid>
+      <description>The flyweight design pattern is a way to save memory by sharing as much data as possible with similar objects. It&amp;rsquo;s like having a library where instead of buying a book every time we want to read it, we just borrow it, read it, and return it. This way, many people can read the book, but there&amp;rsquo;s only one copy that everyone shares.
+In real world, imagine we have a company that creates business cards.</description>
+    </item>
+    
+    <item>
+      <title>Facade with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/facade/</link>
+      <pubDate>Tue, 06 Feb 2024 23:03:34 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/facade/</guid>
+      <description>The Facade Design Pattern is like having a remote control for various devices in our home. Imagine we have a TV, a sound system, and lights in our living room. Instead of turning on each one separately, we use a remote control (the &amp;ldquo;facade&amp;rdquo;) that has a single &amp;ldquo;movie mode&amp;rdquo; button. When we press it, the remote turns on the TV, sets the sound system to the right volume, and dims the lights all at once.</description>
+    </item>
+    
+    <item>
+      <title>Decorator with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/decorator/</link>
+      <pubDate>Sat, 03 Feb 2024 20:25:19 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/decorator/</guid>
+      <description>The decorator pattern is a design pattern in programming that allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.
+In real world, imagine we are decorating a plain Christmas tree. We start with a simple tree, and we add decorations to it such as lights, ornaments, and tinsel. Each decoration enhances the tree by adding a layer of detail without changing its structure.</description>
+    </item>
+    
+    <item>
+      <title>Composite with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/composite/</link>
+      <pubDate>Tue, 13 Jun 2023 20:28:09 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/composite/</guid>
+      <description>The Composite Design Pattern is a structural design pattern that lets us compose objects into tree structures to represent part-whole hierarchies. To expand this further: This pattern is all about creating objects that have other objects inside them. Let&amp;rsquo;s break down the last sentence further:
+Compose objects into tree structures: This means that we&amp;rsquo;re making some objects that contain other objects. This is similar to how a family tree works: a parent can have children, and those children can also be parents to their own children.</description>
+    </item>
+    
+    <item>
+      <title>Bridge with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/bridge/</link>
+      <pubDate>Tue, 06 Jun 2023 22:26:39 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/bridge/</guid>
+      <description>The Bridge Design Pattern is a structural design pattern that aims to separate what a system does from how it does it, so we can change the &amp;lsquo;what&amp;rsquo; and the &amp;lsquo;how&amp;rsquo; independently.
+In other words, it organizes code in a way that lets us modify the operations a system can perform (like starting a car engine), and the details of how those operations are performed (like whether it&amp;rsquo;s a petrol or electric engine), separately.</description>
+    </item>
+    
+    <item>
+      <title>Adapter with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/adapter/</link>
+      <pubDate>Wed, 24 May 2023 09:33:49 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/adapter/</guid>
+      <description>The adapter design pattern is a structural design pattern that allows objects that don&amp;rsquo;t initially know how to interact with each other (due to differences in their communication methods) to still cooperate. This pattern introduces a wrapper class (an &amp;ldquo;adapter&amp;rdquo;) which translates the interface of one class into an interface expected by clients.
+In real world, when one of our electrical appliance has a plug that won&amp;rsquo;t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance.</description>
+    </item>
+    
+    <item>
+      <title>Singleton with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/singleton/</link>
+      <pubDate>Tue, 16 May 2023 21:40:50 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/singleton/</guid>
+      <description>Singleton design pattern is a type of creational pattern which we use when we need to provide global access to an object. Basically, a class will only have one object.
+Let&amp;rsquo;s understand the above with an example:
+class Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super().__call__(*args, **kwargs) return cls._instances[cls] class Car(metaclass=Singleton): def __init__(self, make, model, year): self.make = make self.model = model self.</description>
+    </item>
+    
+    <item>
+      <title>Prototype with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/prototype/</link>
+      <pubDate>Fri, 12 May 2023 14:33:06 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/prototype/</guid>
+      <description>The Prototype Design Pattern is a creational design pattern that involves duplicating or &amp;ldquo;cloning&amp;rdquo; existing objects to create new ones, rather than creating new objects from scratch. This is useful when object creation is time-consuming or complex. This means, instead of creating a new object and setting it up, we make a copy of an existing object and modify it as needed.
+Let&amp;rsquo;s understand the above with an example:
+import copy class Car: def __init__(self, model, color, engine): self.</description>
+    </item>
+    
+    <item>
+      <title>Builder with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/builder/</link>
+      <pubDate>Mon, 08 May 2023 23:06:55 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/builder/</guid>
+      <description>The Builder design pattern is a method for constructing complex objects step-by-step, allowing you to create different configurations or variations of the object without altering the main class representing the object. It simplifies object creation by providing a clear and flexible way to build objects with multiple options or components.
+Let&amp;rsquo;s understand the above with an example:
+class CarBuilder: def __init__(self): self.car = Car() def set_wheels(self, wheels): self.car.wheels = wheels return self def set_color(self, color): self.</description>
+    </item>
+    
+    <item>
+      <title>Abstract Factory with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/abstract-factory/</link>
+      <pubDate>Sun, 07 May 2023 14:44:52 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/abstract-factory/</guid>
+      <description>Abstract Factory is a creational design pattern that helps create groups of related objects without knowing their specific classes. It&amp;rsquo;s particularly useful when we need to create objects that belong to a family, but we don&amp;rsquo;t care about the specific implementation.
+First, let&amp;rsquo;s understand create groups of related objects without knowing their specific classes with a small example:
+class ShapeFactory: def create_shape(self, shape_type): if shape_type == &amp;#39;circle&amp;#39;: return Circle() elif shape_type == &amp;#39;square&amp;#39;: return Square() elif shape_type == &amp;#39;triangle&amp;#39;: return Triangle() factory = ShapeFactory() shape1 = factory.</description>
+    </item>
+    
+    <item>
+      <title>Factory Method with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/factory-method/</link>
+      <pubDate>Mon, 01 May 2023 11:10:03 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/factory-method/</guid>
+      <description>The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes.
+What exactly does factory mean? &amp;ldquo;Factory&amp;rdquo; refers to an object that is responsible for creating another object.</description>
+    </item>
+    
+    <item>
+      <title>SOLID Principles with examples in Python</title>
+      <link>https://sukhdeepg.github.io/design-patterns/solid/</link>
+      <pubDate>Tue, 21 Mar 2023 23:07:07 +0530</pubDate>
+      
+      <guid>https://sukhdeepg.github.io/design-patterns/solid/</guid>
+      <description>When we start our programming journey, with continuous practice and learning, writing code becomes easier. But, as we advance in our careers, it becomes equally important to learn how to maintain and help others maintain what we are writing. 1. Single Responsibility Principle Easy to understand. Every module, class, or function should only have a single responsibility or only one reason to change. But it’s difficult to practically implement because lines can get blurry during implementation.</description>
+    </item>
+    
+  </channel>
+</rss>

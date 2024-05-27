@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Visitor with examples in Python | 💾</title>
+<meta name="keywords" content="design-patterns">
+<meta name="description" content="The Visitor design pattern is like a tool that lets us add new features to our code without changing the original code. Imagine we have a bunch of different types of files on our computer (like documents, music, and videos), and we want to perform various tasks on them, like opening or scanning for viruses. Instead of adding new code to each file type, we create a &ldquo;visitor&rdquo; – a separate set of instructions or tool – that can interact with each type of file to perform the task.">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/design-patterns/visitor/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/img/favicon_16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/img/favicon_32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Visitor with examples in Python" />
+<meta property="og:description" content="The Visitor design pattern is like a tool that lets us add new features to our code without changing the original code. Imagine we have a bunch of different types of files on our computer (like documents, music, and videos), and we want to perform various tasks on them, like opening or scanning for viruses. Instead of adding new code to each file type, we create a &ldquo;visitor&rdquo; – a separate set of instructions or tool – that can interact with each type of file to perform the task." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sukhdeepg.github.io/design-patterns/visitor/" />
+<meta property="og:image" content="https://sukhdeepg.github.io/img/visitor.png" /><meta property="article:section" content="design-patterns" />
+<meta property="article:published_time" content="2024-03-01T21:49:21+05:30" />
+<meta property="article:modified_time" content="2024-03-01T21:49:21+05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sukhdeepg.github.io/img/visitor.png" />
+<meta name="twitter:title" content="Visitor with examples in Python"/>
+<meta name="twitter:description" content="The Visitor design pattern is like a tool that lets us add new features to our code without changing the original code. Imagine we have a bunch of different types of files on our computer (like documents, music, and videos), and we want to perform various tasks on them, like opening or scanning for viruses. Instead of adding new code to each file type, we create a &ldquo;visitor&rdquo; – a separate set of instructions or tool – that can interact with each type of file to perform the task."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Design-patterns",
+      "item": "https://sukhdeepg.github.io/design-patterns/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Visitor with examples in Python",
+      "item": "https://sukhdeepg.github.io/design-patterns/visitor/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Visitor with examples in Python",
+  "name": "Visitor with examples in Python",
+  "description": "The Visitor design pattern is like a tool that lets us add new features to our code without changing the original code. Imagine we have a bunch of different types of files on our computer (like documents, music, and videos), and we want to perform various tasks on them, like opening or scanning for viruses. Instead of adding new code to each file type, we create a \u0026ldquo;visitor\u0026rdquo; – a separate set of instructions or tool – that can interact with each type of file to perform the task.",
+  "keywords": [
+    "design-patterns"
+  ],
+  "articleBody": "The Visitor design pattern is like a tool that lets us add new features to our code without changing the original code. Imagine we have a bunch of different types of files on our computer (like documents, music, and videos), and we want to perform various tasks on them, like opening or scanning for viruses. Instead of adding new code to each file type, we create a “visitor” – a separate set of instructions or tool – that can interact with each type of file to perform the task. This way, our original files remain unchanged, and we can easily add new actions without messing with the existing setup.\nIn backend engineering, think of it as if we have different types of data (like user data, product data, etc.) stored in our system. We might need to perform tasks like validating or formatting this data differently. Instead of changing the original data structures, we create a “visitor” (a piece of code) that goes through each data type and performs the needed task. This makes our system more flexible and easier to update or maintain, as we can add new operations without altering the core structures of our data.\nImagine a tax inspector visiting different types of stores in a mall to assess taxes. Each store (like a bookstore, a restaurant, or a jewelry shop) handles the tax inspection differently due to their different types of business. However, the tax inspector (the “visitor”) can visit each store and apply the necessary tax rules without the stores needing to know the details of tax assessment processes. Each store just needs to allow the inspector to visit.\nLet’s understand this further with an example in Python:\nclass CarElement: def accept(self, visitor): pass class Body(CarElement): def accept(self, visitor): visitor.visitBody(self) class Engine(CarElement): def accept(self, visitor): visitor.visitEngine(self) class Car(CarElement): def __init__(self): self.elements = [Engine(), Body()] def accept(self, visitor): for element in self.elements: element.accept(visitor) visitor.visitCar(self) class CarElementVisitor: def visitBody(self, body): print(\"Checking car body.\") def visitEngine(self, engine): print(\"Checking engine.\") def visitCar(self, car): print(\"Inspecting overall car.\") visitor = CarElementVisitor() car = Car() car.accept(visitor) Output:\nChecking engine. Checking car body. Inspecting overall car. Here we have different parts of a car (such as the Body and Engine) represented as classes, each inheriting from a common interface, CarElement. This setup allows various car parts to be treated uniformly. Each part class has an accept method that accepts a visitor object and calls a visit method on it, passing itself as an argument. This is how the car parts “accept” the visitor, allowing the visitor to perform specific actions on them.\nThe CarElementVisitor class is the visitor, equipped with different methods (visitBody, visitEngine, visitCar) to handle different types of car elements. These methods define what to do when visiting each type of part, like checking the car’s body or engine. A Car class represents the entire car and contains a collection of car parts. It also has an accept method, which lets the visitor visit each part of the car. In the end, when we create a Car object and a CarElementVisitor object, and let the car accept the visitor, it results in the visitor traversing and performing operations on each part of the car, demonstrating how we can perform various actions on the car’s components without changing the car’s design or structure. This makes it easy to add new features without altering existing code.\nThe Visitor pattern is often used in compilers for programming languages. In this context, the compiler uses the visitor to traverse an abstract syntax tree (AST) representing the source code. Each node in the tree may represent a different structure (e.g., expressions, statements, function calls). The visitor pattern allows the compiler to perform operations such as type checking, code optimization (constant folding or dead code elimination), or code generation on these nodes without changing the classes of the elements of the tree.\n",
+  "wordCount" : "645",
+  "inLanguage": "en",
+  "image":"https://sukhdeepg.github.io/img/visitor.png","datePublished": "2024-03-01T21:49:21+05:30",
+  "dateModified": "2024-03-01T21:49:21+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sukhdeepg.github.io/design-patterns/visitor/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "💾",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sukhdeepg.github.io/img/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/design-patterns/" title="Design Patterns">
+                    <span>Design Patterns</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/annotated-research-papers/" title="Annotated Papers">
+                    <span>Annotated Papers</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/engineering-blogs/" title="Engineering Blogs">
+                    <span>Engineering Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/design-patterns/">Design-patterns</a></div>
+    <h1 class="post-title">
+      Visitor with examples in Python
+    </h1>
+    <div class="post-meta"><span title='2024-03-01 21:49:21 +0530 IST'>March 1, 2024</span>&nbsp;·&nbsp;4 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/visitor.png" alt="visitor">
+        
+</figure>
+  <div class="post-content"><p>The Visitor design pattern is like a tool that lets us add new features to our code without changing the original code. Imagine we have a bunch of different types of files on our computer (like documents, music, and videos), and we want to perform various tasks on them, like opening or scanning for viruses. Instead of adding new code to each file type, we create a &ldquo;visitor&rdquo; – a separate set of instructions or tool – that can interact with each type of file to perform the task. This way, our original files remain unchanged, and we can easily add new actions without messing with the existing setup.</p>
+<p>In backend engineering, think of it as if we have different types of data (like user data, product data, etc.) stored in our system. We might need to perform tasks like validating or formatting this data differently. Instead of changing the original data structures, we create a &ldquo;visitor&rdquo; (a piece of code) that goes through each data type and performs the needed task. This makes our system more flexible and easier to update or maintain, as we can add new operations without altering the core structures of our data.</p>
+<p>Imagine a tax inspector visiting different types of stores in a mall to assess taxes. Each store (like a bookstore, a restaurant, or a jewelry shop) handles the tax inspection differently due to their different types of business. However, the tax inspector (the &ldquo;visitor&rdquo;) can visit each store and apply the necessary tax rules without the stores needing to know the details of tax assessment processes. Each store just needs to allow the inspector to visit.</p>
+<p>Let&rsquo;s understand this further with an example in Python:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CarElement</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">visitor</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Body</span><span class="p">(</span><span class="n">CarElement</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">visitor</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">visitor</span><span class="o">.</span><span class="n">visitBody</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Engine</span><span class="p">(</span><span class="n">CarElement</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">visitor</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">visitor</span><span class="o">.</span><span class="n">visitEngine</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Car</span><span class="p">(</span><span class="n">CarElement</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="n">Engine</span><span class="p">(),</span> <span class="n">Body</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">visitor</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">element</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="n">visitor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">visitor</span><span class="o">.</span><span class="n">visitCar</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CarElementVisitor</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">visitBody</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Checking car body.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">visitEngine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Checking engine.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">visitCar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Inspecting overall car.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">visitor</span> <span class="o">=</span> <span class="n">CarElementVisitor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">car</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="n">visitor</span><span class="p">)</span>
+</span></span></code></pre></div><p>Output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Checking engine.
+</span></span><span class="line"><span class="cl">Checking car body.
+</span></span><span class="line"><span class="cl">Inspecting overall car.
+</span></span></code></pre></div><p>Here we have different parts of a car (such as the Body and Engine) represented as classes, each inheriting from a common interface, <code>CarElement</code>. This setup allows various car parts to be treated uniformly. Each part class has an <code>accept</code> method that accepts a visitor object and calls a visit method on it, passing itself as an argument. This is how the car parts &ldquo;accept&rdquo; the visitor, allowing the visitor to perform specific actions on them.</p>
+<p>The <code>CarElementVisitor</code> class is the visitor, equipped with different methods (<code>visitBody</code>, <code>visitEngine</code>, <code>visitCar</code>) to handle different types of car elements. These methods define what to do when visiting each type of part, like checking the car&rsquo;s body or engine. A <code>Car</code> class represents the entire car and contains a collection of car parts. It also has an <code>accept</code> method, which lets the visitor visit each part of the car. In the end, when we create a <code>Car</code> object and a <code>CarElementVisitor</code> object, and let the car accept the visitor, it results in the visitor traversing and performing operations on each part of the car, demonstrating how we can perform various actions on the car&rsquo;s components without changing the car&rsquo;s design or structure. This makes it easy to add new features without altering existing code.</p>
+<p>The Visitor pattern is often used in compilers for programming languages. In this context, the compiler uses the visitor to traverse an abstract syntax tree (AST) representing the source code. Each node in the tree may represent a different structure (e.g., expressions, statements, function calls). The visitor pattern allows the compiler to perform operations such as type checking, code optimization (constant folding or dead code elimination), or code generation on these nodes without changing the classes of the elements of the tree.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design-patterns</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://sukhdeepg.github.io/design-patterns/template-method/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Template Method with examples in Python</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://sukhdeepg.github.io/">💾</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

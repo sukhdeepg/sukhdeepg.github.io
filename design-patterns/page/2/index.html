@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Design-patterns | 💾</title>
+<meta name="keywords" content="">
+<meta name="description" content="Design-patterns - 💾">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/design-patterns/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/img/favicon_16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/img/favicon_32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://sukhdeepg.github.io/design-patterns/index.xml">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Design-patterns" />
+<meta property="og:description" content="Blog" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sukhdeepg.github.io/design-patterns/" /><meta property="og:image" content="https://sukhdeepg.github.io/"/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://sukhdeepg.github.io/"/>
+
+<meta name="twitter:title" content="Design-patterns"/>
+<meta name="twitter:description" content="Blog"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Design-patterns",
+      "item": "https://sukhdeepg.github.io/design-patterns/"
+    }
+  ]
+}
+</script>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/design-patterns/" title="Design Patterns">
+                    <span class="active">Design Patterns</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/annotated-research-papers/" title="Annotated Papers">
+                    <span>Annotated Papers</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/engineering-blogs/" title="Engineering Blogs">
+                    <span>Engineering Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a></div>
+  <h1>
+    Design-patterns
+    <a href="index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/memento.png" alt="memento">
+</figure>
+  <header class="entry-header">
+    <h2>Memento with examples in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>The Memento design pattern is like a save point for an object’s information, allowing that object to be returned to its previous state later on. This is similar to saving a game and then loading it back up; we get everything back as it was, without needing to know how the game internally manages all its details. This approach is very useful in making features like the ‘undo’ option in many software applications, as it helps reverse actions without disrupting the private workings of the objects involved....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-02-25 16:02:41 +0530 IST'>February 25, 2024</span>&nbsp;·&nbsp;2 min</footer>
+  <a class="entry-link" aria-label="post link to Memento with examples in Python" href="https://sukhdeepg.github.io/design-patterns/memento/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/mediator.png" alt="mediator">
+</figure>
+  <header class="entry-header">
+    <h2>Mediator with examples in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>The mediator design pattern is a behavioral design pattern that allows us to reduce chaotic dependencies between objects. The pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object. This helps to decrease the coupling between classes of objects and the complexity of their relationships.
+Imagine a typical airport control tower. The pilots do not communicate directly with each other; instead, they speak to the control tower....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-02-23 21:58:50 +0530 IST'>February 23, 2024</span>&nbsp;·&nbsp;2 min</footer>
+  <a class="entry-link" aria-label="post link to Mediator with examples in Python" href="https://sukhdeepg.github.io/design-patterns/mediator/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/iterator.png" alt="iterator">
+</figure>
+  <header class="entry-header">
+    <h2>Iterator with examples in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>The Iterator design pattern provides a standard way to loop through a collection of objects without exposing the underlying representation (array, list, map, etc.). It allows us to access elements sequentially without needing to understand the inner workings of the collection.
+Imagine we’re at a pancake house with a menu of different pancake types. We want to look through all the pancake types one by one to decide which one to order....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-02-20 08:27:41 +0530 IST'>February 20, 2024</span>&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to Iterator with examples in Python" href="https://sukhdeepg.github.io/design-patterns/iterator/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/command.png" alt="command">
+</figure>
+  <header class="entry-header">
+    <h2>Command with examples in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>The Command design pattern is a way to organize actions in software so that the requests (like user commands or system operations) are turned into objects. This makes it easier to manage and modify these requests, like putting them in a queue or undoing them. It also helps in separating the part of the software that asks for something to be done from the part that actually does it.
+Imagine a restaurant where customers (the client) give their orders (the command) to a waiter (the invoker) who then forwards the orders to the kitchen (the receiver) to prepare the meal....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-02-17 22:48:29 +0530 IST'>February 17, 2024</span>&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to Command with examples in Python" href="https://sukhdeepg.github.io/design-patterns/command/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/chain_of_responsibility.png" alt="decorator">
+</figure>
+  <header class="entry-header">
+    <h2>Chain of Responsibility with examples in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>The Chain of Responsibility pattern is a design approach in programming that lets us pass requests through a series of processing units or “handlers”. Each handler is a piece of code or a function that has the chance to process the request, or pass it along to the next handler in the sequence. This method helps in organizing code in a way that separates the request sender from its processors, allowing for dynamic handling of requests based on runtime conditions....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-02-14 10:18:29 +0530 IST'>February 14, 2024</span>&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to Chain of Responsibility with examples in Python" href="https://sukhdeepg.github.io/design-patterns/chain-of-responsibility/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://sukhdeepg.github.io/design-patterns/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="https://sukhdeepg.github.io/design-patterns/page/3/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://sukhdeepg.github.io/">💾</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

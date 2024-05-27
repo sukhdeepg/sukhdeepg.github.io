@@ -3,84 +3,102 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://sukhdeepg.github.io/</loc>
-    <lastmod>2024-03-01T21:49:21+05:30</lastmod>
+    <lastmod>2024-05-26T15:10:01+03:19</lastmod>
+  </url><url>
+    <loc>https://sukhdeepg.github.io/engineering-blogs/engineering-blogs-list/</loc>
+    <lastmod>2024-05-26T15:10:01+03:19</lastmod>
+  </url><url>
+    <loc>https://sukhdeepg.github.io/tags/engineering-blogs/</loc>
+    <lastmod>2024-05-26T15:10:01+03:19</lastmod>
+  </url><url>
+    <loc>https://sukhdeepg.github.io/engineering-blogs/</loc>
+    <lastmod>2024-05-26T15:10:01+03:19</lastmod>
+  </url><url>
+    <loc>https://sukhdeepg.github.io/tags/</loc>
+    <lastmod>2024-05-26T15:10:01+03:19</lastmod>
+  </url><url>
+    <loc>https://sukhdeepg.github.io/annotated-research-papers/annotated-research-papers-list/</loc>
+    <lastmod>2024-05-26T14:44:52+05:30</lastmod>
+  </url><url>
+    <loc>https://sukhdeepg.github.io/tags/annotated-research-papers/</loc>
+    <lastmod>2024-05-26T14:44:52+05:30</lastmod>
+  </url><url>
+    <loc>https://sukhdeepg.github.io/annotated-research-papers/</loc>
+    <lastmod>2024-05-26T14:44:52+05:30</lastmod>
   </url><url>
     <loc>https://sukhdeepg.github.io/tags/design-patterns/</loc>
     <lastmod>2024-03-01T21:49:21+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/</loc>
     <lastmod>2024-03-01T21:49:21+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/tags/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/visitor/</loc>
     <lastmod>2024-03-01T21:49:21+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/visitor/</loc>
-    <lastmod>2024-03-01T21:49:21+05:30</lastmod>
-  </url><url>
-    <loc>https://sukhdeepg.github.io/posts/template-method/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/template-method/</loc>
     <lastmod>2024-02-27T23:13:18+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/strategy/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/strategy/</loc>
     <lastmod>2024-02-26T17:19:34+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/state/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/state/</loc>
     <lastmod>2024-02-25T20:24:32+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/observer/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/observer/</loc>
     <lastmod>2024-02-25T20:07:55+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/memento/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/memento/</loc>
     <lastmod>2024-02-25T16:02:41+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/mediator/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/mediator/</loc>
     <lastmod>2024-02-23T21:58:50+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/iterator/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/iterator/</loc>
     <lastmod>2024-02-20T08:27:41+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/command/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/command/</loc>
     <lastmod>2024-02-17T22:48:29+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/chain-of-responsibility/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/chain-of-responsibility/</loc>
     <lastmod>2024-02-14T10:18:29+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/proxy/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/proxy/</loc>
     <lastmod>2024-02-10T21:57:40+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/flyweight/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/flyweight/</loc>
     <lastmod>2024-02-07T20:51:28+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/facade/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/facade/</loc>
     <lastmod>2024-02-06T23:03:34+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/decorator/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/decorator/</loc>
     <lastmod>2024-02-03T20:25:19+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/composite/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/composite/</loc>
     <lastmod>2023-06-13T20:28:09+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/bridge/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/bridge/</loc>
     <lastmod>2023-06-06T22:26:39+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/adapter/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/adapter/</loc>
     <lastmod>2023-05-24T09:33:49+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/singleton/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/singleton/</loc>
     <lastmod>2023-05-16T21:40:50+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/prototype/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/prototype/</loc>
     <lastmod>2023-05-12T14:33:06+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/builder/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/builder/</loc>
     <lastmod>2023-05-08T23:06:55+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/abstract-factory/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/abstract-factory/</loc>
     <lastmod>2023-05-07T14:44:52+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/factory-method/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/factory-method/</loc>
     <lastmod>2023-05-01T11:10:03+05:30</lastmod>
   </url><url>
-    <loc>https://sukhdeepg.github.io/posts/solid/</loc>
+    <loc>https://sukhdeepg.github.io/design-patterns/solid/</loc>
     <lastmod>2023-03-21T23:07:07+05:30</lastmod>
   </url><url>
     <loc>https://sukhdeepg.github.io/tags/solid-principles/</loc>

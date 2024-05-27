@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Decorator with examples in Python | 💾</title>
+<meta name="keywords" content="design-patterns">
+<meta name="description" content="The decorator pattern is a design pattern in programming that allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.
+In real world, imagine we are decorating a plain Christmas tree. We start with a simple tree, and we add decorations to it such as lights, ornaments, and tinsel. Each decoration enhances the tree by adding a layer of detail without changing its structure.">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/design-patterns/decorator/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/img/favicon_16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/img/favicon_32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Decorator with examples in Python" />
+<meta property="og:description" content="The decorator pattern is a design pattern in programming that allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.
+In real world, imagine we are decorating a plain Christmas tree. We start with a simple tree, and we add decorations to it such as lights, ornaments, and tinsel. Each decoration enhances the tree by adding a layer of detail without changing its structure." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sukhdeepg.github.io/design-patterns/decorator/" />
+<meta property="og:image" content="https://sukhdeepg.github.io/img/decorator.png" /><meta property="article:section" content="design-patterns" />
+<meta property="article:published_time" content="2024-02-03T20:25:19+05:30" />
+<meta property="article:modified_time" content="2024-02-03T20:25:19+05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sukhdeepg.github.io/img/decorator.png" />
+<meta name="twitter:title" content="Decorator with examples in Python"/>
+<meta name="twitter:description" content="The decorator pattern is a design pattern in programming that allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.
+In real world, imagine we are decorating a plain Christmas tree. We start with a simple tree, and we add decorations to it such as lights, ornaments, and tinsel. Each decoration enhances the tree by adding a layer of detail without changing its structure."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Design-patterns",
+      "item": "https://sukhdeepg.github.io/design-patterns/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Decorator with examples in Python",
+      "item": "https://sukhdeepg.github.io/design-patterns/decorator/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Decorator with examples in Python",
+  "name": "Decorator with examples in Python",
+  "description": "The decorator pattern is a design pattern in programming that allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.\nIn real world, imagine we are decorating a plain Christmas tree. We start with a simple tree, and we add decorations to it such as lights, ornaments, and tinsel. Each decoration enhances the tree by adding a layer of detail without changing its structure.",
+  "keywords": [
+    "design-patterns"
+  ],
+  "articleBody": "The decorator pattern is a design pattern in programming that allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.\nIn real world, imagine we are decorating a plain Christmas tree. We start with a simple tree, and we add decorations to it such as lights, ornaments, and tinsel. Each decoration enhances the tree by adding a layer of detail without changing its structure. We can add or remove decorations freely without affecting the underlying tree.\nSimilarly, in programming, the decorator pattern is used to “decorate” objects with additional features or behaviors without changing the object’s class. Each decorator adds some functionality, wrapping the original object, just like ornaments wrapping the tree.\nLet’s understand this with an example:\nclass Car: def __init__(self): self._description = \"Basic Car\" def get_description(self): return self._description def get_cost(self): # Cost of the basic car return 10000 Now, let’s define some decorators to add features to the car:\nclass PremiumPackageDecorator: def __init__(self, car): self._car = car def get_description(self): return self._car.get_description() + \", with premium package\" def get_cost(self): return self._car.get_cost() + 5000 class SportsPackageDecorator: def __init__(self, car): self._car = car def get_description(self): return self._car.get_description() + \", with sports package\" def get_cost(self): return self._car.get_cost() + 7000 # Create a basic car my_car = Car() print(my_car.get_description()) print(my_car.get_cost()) # Add premium package my_car = PremiumPackageDecorator(my_car) print(my_car.get_description()) print(my_car.get_cost()) # Add sports package my_car = SportsPackageDecorator(my_car) print(my_car.get_description()) print(my_car.get_cost()) Output:\nBasic Car 10000 Basic Car, with premium package 15000 Basic Car, with premium package, with sports package 22000 In python we have “@” decorators that we can use on functions.\ndef basic_car_description(): \"\"\"A simple function that returns a basic car's description.\"\"\" return \"Basic Car\" def basic_car_cost(): \"\"\"A simple function that returns a basic car's cost.\"\"\" return 10000 def premium_package(func): \"\"\"Decorator function to add premium package features to a car's description.\"\"\" def wrapper(*args, **kwargs): return func(*args, **kwargs) + \", with premium package\" return wrapper def sports_package(func): \"\"\"Decorator function to add sports package features to a car's description.\"\"\" def wrapper(*args, **kwargs): return func(*args, **kwargs) + \", with sports package\" return wrapper def additional_cost(amount): \"\"\"Decorator function to add additional cost to a car.\"\"\" def decorator(func): def wrapper(*args, **kwargs): return func(*args, **kwargs) + amount return wrapper return decorator # Decorating the functions @premium_package def get_premium_car_description(): return basic_car_description() @additional_cost(5000) def get_premium_car_cost(): return basic_car_cost() @premium_package @sports_package def get_sports_premium_car_description(): return basic_car_description() @additional_cost(12000) def get_sports_premium_car_cost(): return basic_car_cost() print(get_premium_car_description()) print(get_premium_car_cost()) print(get_sports_premium_car_description()) print(get_sports_premium_car_cost()) Output:\nBasic Car, with premium package 15000 Basic Car, with sports package, with premium package 22000 ",
+  "wordCount" : "418",
+  "inLanguage": "en",
+  "image":"https://sukhdeepg.github.io/img/decorator.png","datePublished": "2024-02-03T20:25:19+05:30",
+  "dateModified": "2024-02-03T20:25:19+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sukhdeepg.github.io/design-patterns/decorator/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "💾",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sukhdeepg.github.io/img/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/design-patterns/" title="Design Patterns">
+                    <span>Design Patterns</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/annotated-research-papers/" title="Annotated Papers">
+                    <span>Annotated Papers</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/engineering-blogs/" title="Engineering Blogs">
+                    <span>Engineering Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/design-patterns/">Design-patterns</a></div>
+    <h1 class="post-title">
+      Decorator with examples in Python
+    </h1>
+    <div class="post-meta"><span title='2024-02-03 20:25:19 +0530 IST'>February 3, 2024</span>&nbsp;·&nbsp;2 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/decorator.png" alt="decorator">
+        
+</figure>
+  <div class="post-content"><p>The decorator pattern is a design pattern in programming that allows behavior to be added to individual objects, either statically or dynamically, without affecting the behavior of other objects from the same class.</p>
+<p>In real world, imagine we are decorating a plain Christmas tree. We start with a simple tree, and we add decorations to it such as lights, ornaments, and tinsel. Each decoration enhances the tree by adding a layer of detail without changing its structure. We can add or remove decorations freely without affecting the underlying tree.</p>
+<p>Similarly, in programming, the decorator pattern is used to &ldquo;decorate&rdquo; objects with additional features or behaviors without changing the object&rsquo;s class. Each decorator adds some functionality, wrapping the original object, just like ornaments wrapping the tree.</p>
+<p>Let&rsquo;s understand this with an example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_description</span> <span class="o">=</span> <span class="s2">&#34;Basic Car&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_description</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Cost of the basic car</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">10000</span>
+</span></span></code></pre></div><p>Now, let&rsquo;s define some decorators to add features to the car:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PremiumPackageDecorator</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_car</span> <span class="o">=</span> <span class="n">car</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_car</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&#34;, with premium package&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_car</span><span class="o">.</span><span class="n">get_cost</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SportsPackageDecorator</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_car</span> <span class="o">=</span> <span class="n">car</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_car</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&#34;, with sports package&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_cost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_car</span><span class="o">.</span><span class="n">get_cost</span><span class="p">()</span> <span class="o">+</span> <span class="mi">7000</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Create a basic car</span>
+</span></span><span class="line"><span class="cl"><span class="n">my_car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">get_description</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Add premium package</span>
+</span></span><span class="line"><span class="cl"><span class="n">my_car</span> <span class="o">=</span> <span class="n">PremiumPackageDecorator</span><span class="p">(</span><span class="n">my_car</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">get_description</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Add sports package</span>
+</span></span><span class="line"><span class="cl"><span class="n">my_car</span> <span class="o">=</span> <span class="n">SportsPackageDecorator</span><span class="p">(</span><span class="n">my_car</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">get_description</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">get_cost</span><span class="p">())</span>
+</span></span></code></pre></div><p>Output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Basic Car
+</span></span><span class="line"><span class="cl">10000
+</span></span><span class="line"><span class="cl">Basic Car, with premium package
+</span></span><span class="line"><span class="cl">15000
+</span></span><span class="line"><span class="cl">Basic Car, with premium package, with sports package
+</span></span><span class="line"><span class="cl">22000
+</span></span></code></pre></div><p>In python we have &ldquo;@&rdquo; decorators that we can use on functions.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">basic_car_description</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;A simple function that returns a basic car&#39;s description.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;Basic Car&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">basic_car_cost</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;A simple function that returns a basic car&#39;s cost.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">10000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">premium_package</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Decorator function to add premium package features to a car&#39;s description.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;, with premium package&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">wrapper</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sports_package</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Decorator function to add sports package features to a car&#39;s description.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;, with sports package&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">wrapper</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">additional_cost</span><span class="p">(</span><span class="n">amount</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Decorator function to add additional cost to a car.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">+</span> <span class="n">amount</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">wrapper</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">decorator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Decorating the functions</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@premium_package</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_premium_car_description</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">basic_car_description</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@additional_cost</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_premium_car_cost</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">basic_car_cost</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@premium_package</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@sports_package</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_sports_premium_car_description</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">basic_car_description</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@additional_cost</span><span class="p">(</span><span class="mi">12000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_sports_premium_car_cost</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">basic_car_cost</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">get_premium_car_description</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">get_premium_car_cost</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">get_sports_premium_car_description</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">get_sports_premium_car_cost</span><span class="p">())</span>
+</span></span></code></pre></div><p>Output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Basic Car, with premium package
+</span></span><span class="line"><span class="cl">15000
+</span></span><span class="line"><span class="cl">Basic Car, with sports package, with premium package
+</span></span><span class="line"><span class="cl">22000
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design-patterns</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://sukhdeepg.github.io/design-patterns/facade/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Facade with examples in Python</span>
+  </a>
+  <a class="next" href="https://sukhdeepg.github.io/design-patterns/composite/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Composite with examples in Python</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://sukhdeepg.github.io/">💾</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

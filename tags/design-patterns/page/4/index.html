@@ -109,6 +109,21 @@
         </div>
         <ul id="menu">
             <li>
+                <a href="https://sukhdeepg.github.io/design-patterns/" title="Design Patterns">
+                    <span>Design Patterns</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/annotated-research-papers/" title="Annotated Papers">
+                    <span>Annotated Papers</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/engineering-blogs/" title="Engineering Blogs">
+                    <span>Engineering Blogs</span>
+                </a>
+            </li>
+            <li>
                 <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
@@ -148,7 +163,7 @@
 In other words, it organizes code in a way that lets us modify the operations a system can perform (like starting a car engine), and the details of how those operations are performed (like whether it’s a petrol or electric engine), separately....</p>
   </div>
   <footer class="entry-footer"><span title='2023-06-06 22:26:39 +0530 IST'>June 6, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Bridge with examples in Python" href="https://sukhdeepg.github.io/posts/bridge/"></a>
+  <a class="entry-link" aria-label="post link to Bridge with examples in Python" href="https://sukhdeepg.github.io/design-patterns/bridge/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -163,7 +178,7 @@ In other words, it organizes code in a way that lets us modify the operations a 
 In real world, when one of our electrical appliance has a plug that won’t fit in the socket due to the appliance having different norm than the other appliances, we make use of an adapter to overcome this and use the appliance....</p>
   </div>
   <footer class="entry-footer"><span title='2023-05-24 09:33:49 +0530 IST'>May 24, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Adapter with examples in Python" href="https://sukhdeepg.github.io/posts/adapter/"></a>
+  <a class="entry-link" aria-label="post link to Adapter with examples in Python" href="https://sukhdeepg.github.io/design-patterns/adapter/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -179,7 +194,7 @@ Let’s understand the above with an example:
 class Singleton(type): _instances = {} def __call__(cls, *args, **kwargs): if cls not in cls._instances: cls._instances[cls] = super().__call__(*args, **kwargs) return cls._instances[cls] class Car(metaclass=Singleton): def __init__(self, make, model, year): self.make = make self.model = model self....</p>
   </div>
   <footer class="entry-footer"><span title='2023-05-16 21:40:50 +0530 IST'>May 16, 2023</span>&nbsp;·&nbsp;1 min</footer>
-  <a class="entry-link" aria-label="post link to Singleton with examples in Python" href="https://sukhdeepg.github.io/posts/singleton/"></a>
+  <a class="entry-link" aria-label="post link to Singleton with examples in Python" href="https://sukhdeepg.github.io/design-patterns/singleton/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -195,7 +210,7 @@ Let’s understand the above with an example:
 import copy class Car: def __init__(self, model, color, engine): self....</p>
   </div>
   <footer class="entry-footer"><span title='2023-05-12 14:33:06 +0530 IST'>May 12, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Prototype with examples in Python" href="https://sukhdeepg.github.io/posts/prototype/"></a>
+  <a class="entry-link" aria-label="post link to Prototype with examples in Python" href="https://sukhdeepg.github.io/design-patterns/prototype/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -211,7 +226,7 @@ Let’s understand the above with an example:
 class CarBuilder: def __init__(self): self.car = Car() def set_wheels(self, wheels): self.car.wheels = wheels return self def set_color(self, color): self....</p>
   </div>
   <footer class="entry-footer"><span title='2023-05-08 23:06:55 +0530 IST'>May 8, 2023</span>&nbsp;·&nbsp;2 min</footer>
-  <a class="entry-link" aria-label="post link to Builder with examples in Python" href="https://sukhdeepg.github.io/posts/builder/"></a>
+  <a class="entry-link" aria-label="post link to Builder with examples in Python" href="https://sukhdeepg.github.io/design-patterns/builder/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

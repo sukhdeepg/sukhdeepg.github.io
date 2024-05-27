@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Flyweight with examples in Python | 💾</title>
+<meta name="keywords" content="design-patterns">
+<meta name="description" content="The flyweight design pattern is a way to save memory by sharing as much data as possible with similar objects. It&rsquo;s like having a library where instead of buying a book every time we want to read it, we just borrow it, read it, and return it. This way, many people can read the book, but there&rsquo;s only one copy that everyone shares.
+In real world, imagine we have a company that creates business cards.">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/design-patterns/flyweight/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/img/favicon_16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/img/favicon_32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Flyweight with examples in Python" />
+<meta property="og:description" content="The flyweight design pattern is a way to save memory by sharing as much data as possible with similar objects. It&rsquo;s like having a library where instead of buying a book every time we want to read it, we just borrow it, read it, and return it. This way, many people can read the book, but there&rsquo;s only one copy that everyone shares.
+In real world, imagine we have a company that creates business cards." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sukhdeepg.github.io/design-patterns/flyweight/" />
+<meta property="og:image" content="https://sukhdeepg.github.io/img/flyweight.png" /><meta property="article:section" content="design-patterns" />
+<meta property="article:published_time" content="2024-02-07T20:51:28+05:30" />
+<meta property="article:modified_time" content="2024-02-07T20:51:28+05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sukhdeepg.github.io/img/flyweight.png" />
+<meta name="twitter:title" content="Flyweight with examples in Python"/>
+<meta name="twitter:description" content="The flyweight design pattern is a way to save memory by sharing as much data as possible with similar objects. It&rsquo;s like having a library where instead of buying a book every time we want to read it, we just borrow it, read it, and return it. This way, many people can read the book, but there&rsquo;s only one copy that everyone shares.
+In real world, imagine we have a company that creates business cards."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Design-patterns",
+      "item": "https://sukhdeepg.github.io/design-patterns/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Flyweight with examples in Python",
+      "item": "https://sukhdeepg.github.io/design-patterns/flyweight/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Flyweight with examples in Python",
+  "name": "Flyweight with examples in Python",
+  "description": "The flyweight design pattern is a way to save memory by sharing as much data as possible with similar objects. It\u0026rsquo;s like having a library where instead of buying a book every time we want to read it, we just borrow it, read it, and return it. This way, many people can read the book, but there\u0026rsquo;s only one copy that everyone shares.\nIn real world, imagine we have a company that creates business cards.",
+  "keywords": [
+    "design-patterns"
+  ],
+  "articleBody": "The flyweight design pattern is a way to save memory by sharing as much data as possible with similar objects. It’s like having a library where instead of buying a book every time we want to read it, we just borrow it, read it, and return it. This way, many people can read the book, but there’s only one copy that everyone shares.\nIn real world, imagine we have a company that creates business cards. Instead of printing a new card for each employee, we have a template that has the company’s logo, the font, and the design. When a new employee needs a card, we only change the name and contact details but use the same template for everything else. That template is like the shared part in the flyweight pattern.\nLet’s understand this with an example, say we have a program that manages a fleet of cars. Without the flyweight pattern, we might create a complete object for each car, which can take up a lot of memory if we have thousands of cars. But many cars share properties like model, brand, or color. With the flyweight pattern, we can create a class that only stores the shared data once and then create smaller, individual objects for each car that reference the shared data.\nclass CarModel: # The Flyweight Class def __init__(self, brand, model, color): self.brand = brand self.model = model self.color = color class Car: # The Context Class def __init__(self, vin, owner, car_model): self.vin = vin self.owner = owner self.car_model = car_model # Flyweight Factory class CarFactory: _models = {} def get_car_model(self, brand, model, color): # Returns an existing instance or creates a new one if it doesn't exist if (brand, model, color) not in self._models: self._models[(brand, model, color)] = CarModel(brand, model, color) return self._models[(brand, model, color)] car_factory = CarFactory() # Let's say we need to create two cars with the same model and color car1 = Car(\"VIN12345\", \"Alice\", car_factory.get_car_model(\"Tesla\", \"Model S\", \"White\")) car2 = Car(\"VIN67890\", \"Bob\", car_factory.get_car_model(\"Tesla\", \"Model S\", \"White\")) # Both car1 and car2 share the same CarModel instance. Practically in code, this pattern can be used in a video game (for this I’ve taken reference from refectoring.guru’s tree example and pseudocode), we might have thousands of trees in the background. Instead of creating a separate object in memory for each tree, which could be very memory-intensive, we use the flyweight pattern. We create a single tree object and then reference it every time we need a new tree in the game’s world. We only store the position of each tree uniquely. This saves memory and allows the game to run smoother on devices with less RAM.\nThis looks very similar to cache right? both aim to improve efficiency by reusing objects that are expensive to create. Here are few points around this:\nReuse of Instances: Just as a cache stores data so that future requests for that data can be served faster, the flyweight pattern keeps instances of similar objects that can be reused. This avoids the overhead of creating a new instance each time.\nMemory Savings: Both patterns help save memory. A cache does this by storing data that can be reused, thereby avoiding the need to recompute or reload data from a slower part of the system. Similarly, the flyweight pattern stores common data externally and shares it among objects, thus reducing the memory footprint.\nPerformance Improvement: The use of caches can greatly speed up access to data that would otherwise take a long time to retrieve or compute. Similarly, the flyweight pattern can speed up programs by avoiding the need to instantiate many similar objects, which can be computationally expensive.\nThe difference is mainly in their intent and use cases:\nA cache is a general-purpose storage mechanism that can hold any kind of data and is typically used to store results of operations, computations, or network calls. The flyweight pattern is a design pattern specifically used in object-oriented programming when creating a large number of similar objects. In essence, we could say that the flyweight pattern implements a form of caching for object instances. It’s a more specialized form of caching that is focused on sharing object state to minimize memory usage, rather than speeding up data retrieval.\nNow, let’s understand 2 important states of flyweight pattern. Intrinsic and Extrinsic. The intrinsic state refers to the information that is shared and does not vary between objects. This shared data is kept in the flyweight object and is independent of the flyweight’s context, meaning that it is common to all objects and doesn’t change from one object to another. The intrinsic state is what enables the memory efficiency of the flyweight pattern, as it is only stored once and referenced by all the individual objects that need it.\nOn the other hand, the extrinsic state consists of the information that varies between objects and is passed to the flyweight upon request. This state is context-specific and changes from one object to another. Since the extrinsic state is not shared, it must be stored externally and must be computed or applied each time it is used. In the flyweight pattern, this is the state that we would pass through method parameters when calling flyweight methods.\nExample explaining both these states: Here we have a class representing different types of trees in a forest. The type of tree (like ‘Oak’, ‘Maple’, etc.) represents the intrinsic state, which is shared among all trees of the same type. The position of each tree in the forest represents the extrinsic state, which is unique for each tree instance.\n# Flyweight class to store intrinsic state class TreeType: def __init__(self, name, color, texture): self.name = name # Intrinsic State self.color = color # Intrinsic State self.texture = texture # Intrinsic State def display(self, x, y): print(f\"Displaying a {self.color} {self.name} tree at ({x}, {y}).\") # Factory to manage TreeType flyweight instances class TreeFactory: _tree_types = {} @classmethod def get_tree_type(cls, name, color, texture): if (name, color, texture) not in cls._tree_types: cls._tree_types[(name, color, texture)] = TreeType(name, color, texture) return cls._tree_types[(name, color, texture)] # Context class to store extrinsic state class Tree: def __init__(self, x, y, tree_type): self.x = x # Extrinsic State self.y = y # Extrinsic State self.tree_type = tree_type def display(self): self.tree_type.display(self.x, self.y) # Usage # A forest class containing multiple tree instances class Forest: def __init__(self): self.trees = [] def plant_tree(self, x, y, name, color, texture): tree_type = TreeFactory.get_tree_type(name, color, texture) tree = Tree(x, y, tree_type) self.trees.append(tree) def display_forest(self): for tree in self.trees: tree.display() # Client code forest = Forest() forest.plant_tree(1, 2, \"Maple\", \"Red\", \"Rough\") forest.plant_tree(5, 3, \"Oak\", \"Green\", \"Rough\") forest.plant_tree(10, 1, \"Maple\", \"Red\", \"Rough\") # Reuses Maple tree type forest.display_forest() In this example:\nThe TreeType class represents the flyweight which includes the intrinsic state (name, color, and texture). The Tree class represents the context which has the extrinsic state (x and y coordinates). TreeFactory is used to ensure that for each type of tree, only one TreeType instance is created and shared (flyweight). The display method of TreeType needs the extrinsic state to display the tree, which is provided by the Tree’s display method when it is called. When we run this code, the Forest class will plant trees of different types at different locations, but it will reuse the TreeType instances wherever possible, demonstrating the flyweight pattern.\n",
+  "wordCount" : "1222",
+  "inLanguage": "en",
+  "image":"https://sukhdeepg.github.io/img/flyweight.png","datePublished": "2024-02-07T20:51:28+05:30",
+  "dateModified": "2024-02-07T20:51:28+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sukhdeepg.github.io/design-patterns/flyweight/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "💾",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sukhdeepg.github.io/img/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/design-patterns/" title="Design Patterns">
+                    <span>Design Patterns</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/annotated-research-papers/" title="Annotated Papers">
+                    <span>Annotated Papers</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/engineering-blogs/" title="Engineering Blogs">
+                    <span>Engineering Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/design-patterns/">Design-patterns</a></div>
+    <h1 class="post-title">
+      Flyweight with examples in Python
+    </h1>
+    <div class="post-meta"><span title='2024-02-07 20:51:28 +0530 IST'>February 7, 2024</span>&nbsp;·&nbsp;6 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/flyweight.png" alt="decorator">
+        
+</figure>
+  <div class="post-content"><p>The flyweight design pattern is a way to save memory by sharing as much data as possible with similar objects. It&rsquo;s like having a library where instead of buying a book every time we want to read it, we just borrow it, read it, and return it. This way, many people can read the book, but there&rsquo;s only one copy that everyone shares.</p>
+<p>In real world, imagine we have a company that creates business cards. Instead of printing a new card for each employee, we have a template that has the company&rsquo;s logo, the font, and the design. When a new employee needs a card, we only change the name and contact details but use the same template for everything else. That template is like the shared part in the flyweight pattern.</p>
+<p>Let&rsquo;s understand this with an example, say we have a program that manages a fleet of cars. Without the flyweight pattern, we might create a complete object for each car, which can take up a lot of memory if we have thousands of cars. But many cars share properties like model, brand, or color. With the flyweight pattern, we can create a class that only stores the shared data once and then create smaller, individual objects for each car that reference the shared data.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CarModel</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># The Flyweight Class</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brand</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">brand</span> <span class="o">=</span> <span class="n">brand</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Car</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># The Context Class</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vin</span><span class="p">,</span> <span class="n">owner</span><span class="p">,</span> <span class="n">car_model</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">vin</span> <span class="o">=</span> <span class="n">vin</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="n">owner</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">car_model</span> <span class="o">=</span> <span class="n">car_model</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Flyweight Factory</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CarFactory</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_models</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_car_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brand</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Returns an existing instance or creates a new one if it doesn&#39;t exist</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">brand</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_models</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">_models</span><span class="p">[(</span><span class="n">brand</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">color</span><span class="p">)]</span> <span class="o">=</span> <span class="n">CarModel</span><span class="p">(</span><span class="n">brand</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_models</span><span class="p">[(</span><span class="n">brand</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">color</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">car_factory</span> <span class="o">=</span> <span class="n">CarFactory</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Let&#39;s say we need to create two cars with the same model and color</span>
+</span></span><span class="line"><span class="cl"><span class="n">car1</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s2">&#34;VIN12345&#34;</span><span class="p">,</span> <span class="s2">&#34;Alice&#34;</span><span class="p">,</span> <span class="n">car_factory</span><span class="o">.</span><span class="n">get_car_model</span><span class="p">(</span><span class="s2">&#34;Tesla&#34;</span><span class="p">,</span> <span class="s2">&#34;Model S&#34;</span><span class="p">,</span> <span class="s2">&#34;White&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">car2</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s2">&#34;VIN67890&#34;</span><span class="p">,</span> <span class="s2">&#34;Bob&#34;</span><span class="p">,</span> <span class="n">car_factory</span><span class="o">.</span><span class="n">get_car_model</span><span class="p">(</span><span class="s2">&#34;Tesla&#34;</span><span class="p">,</span> <span class="s2">&#34;Model S&#34;</span><span class="p">,</span> <span class="s2">&#34;White&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Both car1 and car2 share the same CarModel instance.</span>
+</span></span></code></pre></div><p>Practically in code, this pattern can be used in a video game (for this I&rsquo;ve taken reference from <a href="https://refactoring.guru/design-patterns/flyweight/python/example">refectoring.guru</a>&rsquo;s tree example and pseudocode), we might have thousands of trees in the background. Instead of creating a separate object in memory for each tree, which could be very memory-intensive, we use the flyweight pattern. We create a single tree object and then reference it every time we need a new tree in the game&rsquo;s world. We only store the position of each tree uniquely. This saves memory and allows the game to run smoother on devices with less RAM.</p>
+<p>This looks very similar to cache right? both aim to improve efficiency by reusing objects that are expensive to create. Here are few points around this:</p>
+<ol>
+<li>
+<p><strong>Reuse of Instances</strong>: Just as a cache stores data so that future requests for that data can be served faster, the flyweight pattern keeps instances of similar objects that can be reused. This avoids the overhead of creating a new instance each time.</p>
+</li>
+<li>
+<p><strong>Memory Savings</strong>: Both patterns help save memory. A cache does this by storing data that can be reused, thereby avoiding the need to recompute or reload data from a slower part of the system. Similarly, the flyweight pattern stores common data externally and shares it among objects, thus reducing the memory footprint.</p>
+</li>
+<li>
+<p><strong>Performance Improvement</strong>: The use of caches can greatly speed up access to data that would otherwise take a long time to retrieve or compute. Similarly, the flyweight pattern can speed up programs by avoiding the need to instantiate many similar objects, which can be computationally expensive.</p>
+</li>
+</ol>
+<p>The difference is mainly in their intent and use cases:</p>
+<ul>
+<li>A <strong>cache</strong> is a general-purpose storage mechanism that can hold any kind of data and is typically used to store results of operations, computations, or network calls.</li>
+<li>The <strong>flyweight pattern</strong> is a design pattern specifically used in object-oriented programming when creating a large number of similar objects.</li>
+</ul>
+<p>In essence, we could say that the flyweight pattern implements a form of caching for object instances. It&rsquo;s a more specialized form of caching that is focused on sharing object state to minimize memory usage, rather than speeding up data retrieval.</p>
+<p>Now, let&rsquo;s understand 2 important states of flyweight pattern. Intrinsic and Extrinsic.
+The <strong>intrinsic state</strong> refers to the information that is shared and does not vary between objects. This shared data is kept in the flyweight object and is independent of the flyweight&rsquo;s context, meaning that it is common to all objects and doesn&rsquo;t change from one object to another. The intrinsic state is what enables the memory efficiency of the flyweight pattern, as it is only stored once and referenced by all the individual objects that need it.</p>
+<p>On the other hand, the <strong>extrinsic state</strong> consists of the information that varies between objects and is passed to the flyweight upon request. This state is context-specific and changes from one object to another. Since the extrinsic state is not shared, it must be stored externally and must be computed or applied each time it is used. In the flyweight pattern, this is the state that we would pass through method parameters when calling flyweight methods.</p>
+<p>Example explaining both these states:
+Here we have a class representing different types of trees in a forest. The type of tree (like &lsquo;Oak&rsquo;, &lsquo;Maple&rsquo;, etc.) represents the intrinsic state, which is shared among all trees of the same type. The position of each tree in the forest represents the extrinsic state, which is unique for each tree instance.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Flyweight class to store intrinsic state</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TreeType</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">texture</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>        <span class="c1"># Intrinsic State</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>      <span class="c1"># Intrinsic State</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">texture</span> <span class="o">=</span> <span class="n">texture</span>  <span class="c1"># Intrinsic State</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Displaying a </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> tree at (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">).&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Factory to manage TreeType flyweight instances</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TreeFactory</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_tree_types</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@classmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_tree_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">texture</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">texture</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_tree_types</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">cls</span><span class="o">.</span><span class="n">_tree_types</span><span class="p">[(</span><span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">texture</span><span class="p">)]</span> <span class="o">=</span> <span class="n">TreeType</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">texture</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_tree_types</span><span class="p">[(</span><span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">texture</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Context class to store extrinsic state</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Tree</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">tree_type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>              <span class="c1"># Extrinsic State</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>              <span class="c1"># Extrinsic State</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">tree_type</span> <span class="o">=</span> <span class="n">tree_type</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">tree_type</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Usage</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># A forest class containing multiple tree instances</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Forest</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">trees</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">plant_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">texture</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tree_type</span> <span class="o">=</span> <span class="n">TreeFactory</span><span class="o">.</span><span class="n">get_tree_type</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">texture</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tree</span> <span class="o">=</span> <span class="n">Tree</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">tree_type</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">trees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">display_forest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">tree</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trees</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Client code</span>
+</span></span><span class="line"><span class="cl"><span class="n">forest</span> <span class="o">=</span> <span class="n">Forest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">forest</span><span class="o">.</span><span class="n">plant_tree</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;Maple&#34;</span><span class="p">,</span> <span class="s2">&#34;Red&#34;</span><span class="p">,</span> <span class="s2">&#34;Rough&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">forest</span><span class="o">.</span><span class="n">plant_tree</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&#34;Oak&#34;</span><span class="p">,</span> <span class="s2">&#34;Green&#34;</span><span class="p">,</span> <span class="s2">&#34;Rough&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">forest</span><span class="o">.</span><span class="n">plant_tree</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;Maple&#34;</span><span class="p">,</span> <span class="s2">&#34;Red&#34;</span><span class="p">,</span> <span class="s2">&#34;Rough&#34;</span><span class="p">)</span>  <span class="c1"># Reuses Maple tree type</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">forest</span><span class="o">.</span><span class="n">display_forest</span><span class="p">()</span>
+</span></span></code></pre></div><p>In this example:</p>
+<ul>
+<li>The <code>TreeType</code> class represents the flyweight which includes the intrinsic state (<code>name</code>, <code>color</code>, and <code>texture</code>).</li>
+<li>The <code>Tree</code> class represents the context which has the extrinsic state (<code>x</code> and <code>y</code> coordinates).</li>
+<li><code>TreeFactory</code> is used to ensure that for each type of tree, only one <code>TreeType</code> instance is created and shared (flyweight).</li>
+<li>The <code>display</code> method of <code>TreeType</code> needs the extrinsic state to display the tree, which is provided by the <code>Tree</code>&rsquo;s <code>display</code> method when it is called.</li>
+</ul>
+<p>When we run this code, the <code>Forest</code> class will plant trees of different types at different locations, but it will reuse the <code>TreeType</code> instances wherever possible, demonstrating the flyweight pattern.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design-patterns</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://sukhdeepg.github.io/design-patterns/proxy/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Proxy with examples in Python</span>
+  </a>
+  <a class="next" href="https://sukhdeepg.github.io/design-patterns/facade/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Facade with examples in Python</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://sukhdeepg.github.io/">💾</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Chain of Responsibility with examples in Python | 💾</title>
+<meta name="keywords" content="design-patterns">
+<meta name="description" content="The Chain of Responsibility pattern is a design approach in programming that lets us pass requests through a series of processing units or &ldquo;handlers&rdquo;. Each handler is a piece of code or a function that has the chance to process the request, or pass it along to the next handler in the sequence. This method helps in organizing code in a way that separates the request sender from its processors, allowing for dynamic handling of requests based on runtime conditions.">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/design-patterns/chain-of-responsibility/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/img/favicon_16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/img/favicon_32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Chain of Responsibility with examples in Python" />
+<meta property="og:description" content="The Chain of Responsibility pattern is a design approach in programming that lets us pass requests through a series of processing units or &ldquo;handlers&rdquo;. Each handler is a piece of code or a function that has the chance to process the request, or pass it along to the next handler in the sequence. This method helps in organizing code in a way that separates the request sender from its processors, allowing for dynamic handling of requests based on runtime conditions." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sukhdeepg.github.io/design-patterns/chain-of-responsibility/" />
+<meta property="og:image" content="https://sukhdeepg.github.io/img/chain_of_responsibility.png" /><meta property="article:section" content="design-patterns" />
+<meta property="article:published_time" content="2024-02-14T10:18:29+05:30" />
+<meta property="article:modified_time" content="2024-02-14T10:18:29+05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sukhdeepg.github.io/img/chain_of_responsibility.png" />
+<meta name="twitter:title" content="Chain of Responsibility with examples in Python"/>
+<meta name="twitter:description" content="The Chain of Responsibility pattern is a design approach in programming that lets us pass requests through a series of processing units or &ldquo;handlers&rdquo;. Each handler is a piece of code or a function that has the chance to process the request, or pass it along to the next handler in the sequence. This method helps in organizing code in a way that separates the request sender from its processors, allowing for dynamic handling of requests based on runtime conditions."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Design-patterns",
+      "item": "https://sukhdeepg.github.io/design-patterns/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Chain of Responsibility with examples in Python",
+      "item": "https://sukhdeepg.github.io/design-patterns/chain-of-responsibility/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Chain of Responsibility with examples in Python",
+  "name": "Chain of Responsibility with examples in Python",
+  "description": "The Chain of Responsibility pattern is a design approach in programming that lets us pass requests through a series of processing units or \u0026ldquo;handlers\u0026rdquo;. Each handler is a piece of code or a function that has the chance to process the request, or pass it along to the next handler in the sequence. This method helps in organizing code in a way that separates the request sender from its processors, allowing for dynamic handling of requests based on runtime conditions.",
+  "keywords": [
+    "design-patterns"
+  ],
+  "articleBody": "The Chain of Responsibility pattern is a design approach in programming that lets us pass requests through a series of processing units or “handlers”. Each handler is a piece of code or a function that has the chance to process the request, or pass it along to the next handler in the sequence. This method helps in organizing code in a way that separates the request sender from its processors, allowing for dynamic handling of requests based on runtime conditions. This pattern promotes the principle of loose coupling and is particularly useful when the exact handler is not known in advance.\nImagine a customer support system in a company. When a customer raises a complaint or query, it first reaches the front desk (the first level of support). If the front desk can’t solve the issue, the query is passed to the technical support team (the second level). If the technical team also can’t solve it, the query is finally escalated to the engineering team (the third level). Each level in this chain has the opportunity to resolve the issue or pass it along to the next level.\nLet’s illustrate the Chain of Responsibility pattern with a simple Python example that simulates a car service chain. In this example, each service station checks a particular aspect of the car (e.g., Oil Check, Air Filter Check, and Brake Check) and either handles the task or passes it to the next service station in the chain.\nclass Handler: \"\"\"Abstract handler\"\"\" def __init__(self, successor=None): self._successor = successor def handle_request(self, request): raise NotImplementedError('Must provide implementation in subclass!') class OilCheckHandler(Handler): def handle_request(self, request): if request == \"Oil Check\": print(\"Oil Check Done!\") elif self._successor is not None: self._successor.handle_request(request) class AirFilterCheckHandler(Handler): def handle_request(self, request): if request == \"Air Filter Check\": print(\"Air Filter Check Done!\") elif self._successor is not None: self._successor.handle_request(request) class BrakeCheckHandler(Handler): def handle_request(self, request): if request == \"Brake Check\": print(\"Brake Check Done!\") elif self._successor is not None: self._successor.handle_request(request) # Creating the chain chain = OilCheckHandler(AirFilterCheckHandler(BrakeCheckHandler())) # Sending requests chain.handle_request(\"Oil Check\") chain.handle_request(\"Air Filter Check\") chain.handle_request(\"Brake Check\") Output:\nOil Check Done! Air Filter Check Done! Brake Check Done! This code simulates a scenario where a car goes through various service checks. Each handler in the chain has a specific task to perform and knows how to pass tasks it cannot handle to the next handler.\nA frequent real-world use case for the Chain of Responsibility pattern is in the processing of financial transactions, particularly in payment authorization systems. In such systems, a transaction request might need to pass through several checks or validations before it can be approved. These checks might include verifying the account balance, checking for fraud patterns, ensuring compliance with legal regulations, and finally, processing the payment itself.\nEach of these checks represents a handler in the chain. The transaction request is passed along this chain until it either gets approved (processed by a handler) or rejected (fails a check at some handler). This design allows for flexible addition or removal of checks without altering the core processing logic or affecting other checks, making the system highly adaptable to changing requirements or regulations.\n",
+  "wordCount" : "518",
+  "inLanguage": "en",
+  "image":"https://sukhdeepg.github.io/img/chain_of_responsibility.png","datePublished": "2024-02-14T10:18:29+05:30",
+  "dateModified": "2024-02-14T10:18:29+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sukhdeepg.github.io/design-patterns/chain-of-responsibility/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "💾",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sukhdeepg.github.io/img/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/design-patterns/" title="Design Patterns">
+                    <span>Design Patterns</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/annotated-research-papers/" title="Annotated Papers">
+                    <span>Annotated Papers</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/engineering-blogs/" title="Engineering Blogs">
+                    <span>Engineering Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/design-patterns/">Design-patterns</a></div>
+    <h1 class="post-title">
+      Chain of Responsibility with examples in Python
+    </h1>
+    <div class="post-meta"><span title='2024-02-14 10:18:29 +0530 IST'>February 14, 2024</span>&nbsp;·&nbsp;3 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/chain_of_responsibility.png" alt="decorator">
+        
+</figure>
+  <div class="post-content"><p>The Chain of Responsibility pattern is a design approach in programming that lets us pass requests through a series of processing units or &ldquo;handlers&rdquo;. Each handler is a piece of code or a function that has the chance to process the request, or pass it along to the next handler in the sequence. This method helps in organizing code in a way that separates the request sender from its processors, allowing for dynamic handling of requests based on runtime conditions. This pattern promotes the principle of loose coupling and is particularly useful when the exact handler is not known in advance.</p>
+<p>Imagine a customer support system in a company. When a customer raises a complaint or query, it first reaches the front desk (the first level of support). If the front desk can&rsquo;t solve the issue, the query is passed to the technical support team (the second level). If the technical team also can&rsquo;t solve it, the query is finally escalated to the engineering team (the third level). Each level in this chain has the opportunity to resolve the issue or pass it along to the next level.</p>
+<p>Let&rsquo;s illustrate the Chain of Responsibility pattern with a simple Python example that simulates a car service chain. In this example, each service station checks a particular aspect of the car (e.g., Oil Check, Air Filter Check, and Brake Check) and either handles the task or passes it to the next service station in the chain.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Handler</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Abstract handler&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">successor</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_successor</span> <span class="o">=</span> <span class="n">successor</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">handle_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Must provide implementation in subclass!&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">OilCheckHandler</span><span class="p">(</span><span class="n">Handler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">handle_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">request</span> <span class="o">==</span> <span class="s2">&#34;Oil Check&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Oil Check Done!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_successor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">_successor</span><span class="o">.</span><span class="n">handle_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AirFilterCheckHandler</span><span class="p">(</span><span class="n">Handler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">handle_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">request</span> <span class="o">==</span> <span class="s2">&#34;Air Filter Check&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Air Filter Check Done!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_successor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">_successor</span><span class="o">.</span><span class="n">handle_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BrakeCheckHandler</span><span class="p">(</span><span class="n">Handler</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">handle_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">request</span> <span class="o">==</span> <span class="s2">&#34;Brake Check&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Brake Check Done!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_successor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">_successor</span><span class="o">.</span><span class="n">handle_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Creating the chain</span>
+</span></span><span class="line"><span class="cl"><span class="n">chain</span> <span class="o">=</span> <span class="n">OilCheckHandler</span><span class="p">(</span><span class="n">AirFilterCheckHandler</span><span class="p">(</span><span class="n">BrakeCheckHandler</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Sending requests</span>
+</span></span><span class="line"><span class="cl"><span class="n">chain</span><span class="o">.</span><span class="n">handle_request</span><span class="p">(</span><span class="s2">&#34;Oil Check&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">chain</span><span class="o">.</span><span class="n">handle_request</span><span class="p">(</span><span class="s2">&#34;Air Filter Check&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">chain</span><span class="o">.</span><span class="n">handle_request</span><span class="p">(</span><span class="s2">&#34;Brake Check&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Oil Check Done!
+</span></span><span class="line"><span class="cl">Air Filter Check Done!
+</span></span><span class="line"><span class="cl">Brake Check Done!
+</span></span></code></pre></div><p>This code simulates a scenario where a car goes through various service checks. Each handler in the chain has a specific task to perform and knows how to pass tasks it cannot handle to the next handler.</p>
+<p>A frequent real-world use case for the Chain of Responsibility pattern is in the processing of financial transactions, particularly in payment authorization systems. In such systems, a transaction request might need to pass through several checks or validations before it can be approved. These checks might include verifying the account balance, checking for fraud patterns, ensuring compliance with legal regulations, and finally, processing the payment itself.</p>
+<p>Each of these checks represents a handler in the chain. The transaction request is passed along this chain until it either gets approved (processed by a handler) or rejected (fails a check at some handler). This design allows for flexible addition or removal of checks without altering the core processing logic or affecting other checks, making the system highly adaptable to changing requirements or regulations.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design-patterns</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://sukhdeepg.github.io/design-patterns/command/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Command with examples in Python</span>
+  </a>
+  <a class="next" href="https://sukhdeepg.github.io/design-patterns/proxy/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Proxy with examples in Python</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://sukhdeepg.github.io/">💾</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

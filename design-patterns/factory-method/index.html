@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Factory Method with examples in Python | 💾</title>
+<meta name="keywords" content="design-patterns">
+<meta name="description" content="The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes.
+What exactly does factory mean? &ldquo;Factory&rdquo; refers to an object that is responsible for creating another object.">
+<meta name="author" content="">
+<link rel="canonical" href="https://sukhdeepg.github.io/design-patterns/factory-method/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4011e96cb50c0badbd5e58bc6d1415a2f58babd783714a3a042388142298609f.css" integrity="sha256-QBHpbLUMC629Xli8bRQVovWLq9eDcUo6BCOIFCKYYJ8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://sukhdeepg.github.io/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://sukhdeepg.github.io/img/favicon_16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://sukhdeepg.github.io/img/favicon_32.png">
+<link rel="apple-touch-icon" href="https://sukhdeepg.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://sukhdeepg.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Factory Method with examples in Python" />
+<meta property="og:description" content="The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes.
+What exactly does factory mean? &ldquo;Factory&rdquo; refers to an object that is responsible for creating another object." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sukhdeepg.github.io/design-patterns/factory-method/" />
+<meta property="og:image" content="https://sukhdeepg.github.io/img/factory_method.png" /><meta property="article:section" content="design-patterns" />
+<meta property="article:published_time" content="2023-05-01T11:10:03+05:30" />
+<meta property="article:modified_time" content="2023-05-01T11:10:03+05:30" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sukhdeepg.github.io/img/factory_method.png" />
+<meta name="twitter:title" content="Factory Method with examples in Python"/>
+<meta name="twitter:description" content="The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes.
+What exactly does factory mean? &ldquo;Factory&rdquo; refers to an object that is responsible for creating another object."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Design-patterns",
+      "item": "https://sukhdeepg.github.io/design-patterns/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Factory Method with examples in Python",
+      "item": "https://sukhdeepg.github.io/design-patterns/factory-method/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Factory Method with examples in Python",
+  "name": "Factory Method with examples in Python",
+  "description": "The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes.\nWhat exactly does factory mean? \u0026ldquo;Factory\u0026rdquo; refers to an object that is responsible for creating another object.",
+  "keywords": [
+    "design-patterns"
+  ],
+  "articleBody": "The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes.\nWhat exactly does factory mean? “Factory” refers to an object that is responsible for creating another object. In real world factories, we input raw materials and design specfication and we get goods as an output. Here, we input a type or a set of parameters and we get an object as an output. Let’s understand the above with an example:\nfrom abc import ABC from abc import abstractmethod class Car(ABC): @abstractmethod def start(self): pass class ElectricCar(Car): def start(self): return \"Starting electric car!\" class GasolineCar(Car): def start(self): return \"Starting gasoline car!\" class HybridCar(Car): def start(self): return \"Starting hybrid car!\" Here, the ElectricCar, GasolineCar, and HybridCar, extends the Car abstract base class. This means the start method needs to be implemented. Now, we’ll create Car Factory.\nclass CarFactory: def __init__(self): self._car_map = {} def create_car(self, car_type): car_class = self._car_map.get(car_type) if car_class: return car_class() else: raise ValueError(f\"Invalid car type: {car_type}\") def register_car(self, car_type, car_class): self._car_map[car_type] = car_class Now, we can create car objects based on the car_type parameter without hardcoding the exact classes. def main(): car_factory = CarFactory() car_factory.register_car(\"electric\", ElectricCar) car_factory.register_car(\"gasoline\", GasolineCar) car_factory.register_car(\"hybrid\", HybridCar) electric_car = car_factory.create_car(\"electric\") print(electric_car.start()) gasoline_car = car_factory.create_car(\"gasoline\") print(gasoline_car.start()) hybrid_car = car_factory.create_car(\"hybrid\") print(hybrid_car.start()) if __name__ == \"__main__\": main() The output:\nStarting electric car! Starting gasoline car! Starting hybrid car! Now, the above has few benefits:\nDecoupling: CarFactory decouples the creation of car objects from their usage. Client doesn’t need to know about the concrete car classes (ElectricCar, GasolineCar, and HybridCar). This helps make code more modular and easy to maintain. Extensibility: If we need to add a new car type, we can simply create a new class for the car type, extend Car abstract base class, and register the car type with CarFactory. This helps adding new car types without affecting the existing code. Hope the post have created some value. Peace!\n",
+  "wordCount" : "365",
+  "inLanguage": "en",
+  "image":"https://sukhdeepg.github.io/img/factory_method.png","datePublished": "2023-05-01T11:10:03+05:30",
+  "dateModified": "2023-05-01T11:10:03+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sukhdeepg.github.io/design-patterns/factory-method/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "💾",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sukhdeepg.github.io/img/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://sukhdeepg.github.io/" accesskey="h" title="💾 (Alt + H)">💾</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://sukhdeepg.github.io/design-patterns/" title="Design Patterns">
+                    <span>Design Patterns</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/annotated-research-papers/" title="Annotated Papers">
+                    <span>Annotated Papers</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/engineering-blogs/" title="Engineering Blogs">
+                    <span>Engineering Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://sukhdeepg.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://sukhdeepg.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://sukhdeepg.github.io/design-patterns/">Design-patterns</a></div>
+    <h1 class="post-title">
+      Factory Method with examples in Python
+    </h1>
+    <div class="post-meta"><span title='2023-05-01 11:10:03 +0530 IST'>May 1, 2023</span>&nbsp;·&nbsp;2 min
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://sukhdeepg.github.io/img/factory_method.png" alt="factory_method">
+        
+</figure>
+  <div class="post-content"><p>The Factory Method is a creational design pattern which is great for managing object creation in a clean, modular, and scalable way. It promotes loose coupling and code reusability. This pattern comes handy when we have multiple object types with a shared interface or base class, and we want to create new objects based on a given parameter without hardcoding the exact classes.</p>
+<p>What exactly does factory mean?
+&ldquo;Factory&rdquo; refers to an object that is responsible for creating another object. In real world factories, we input raw materials and design specfication and we get goods as an output. Here, we input a type or a set of parameters and we get an object as an output.
+<br/></p>
+<p>Let&rsquo;s understand the above with an example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Car</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ElectricCar</span><span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;Starting electric car!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">GasolineCar</span><span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;Starting gasoline car!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HybridCar</span><span class="p">(</span><span class="n">Car</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;Starting hybrid car!&#34;</span>
+</span></span></code></pre></div><p>Here, the <code>ElectricCar</code>, <code>GasolineCar</code>, and <code>HybridCar</code>, extends the <code>Car</code> abstract base class. This means the <code>start</code> method needs to be implemented.
+<br/></p>
+<p>Now, we&rsquo;ll create <code>Car Factory</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CarFactory</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_car_map</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">create_car</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">car_type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">car_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_car_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">car_type</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">car_class</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">car_class</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Invalid car type: </span><span class="si">{</span><span class="n">car_type</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">register_car</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">car_type</span><span class="p">,</span> <span class="n">car_class</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_car_map</span><span class="p">[</span><span class="n">car_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">car_class</span>
+</span></span></code></pre></div><p>Now, we can create car objects based on the <code>car_type</code> parameter without hardcoding the exact classes.
+<br/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">car_factory</span> <span class="o">=</span> <span class="n">CarFactory</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">car_factory</span><span class="o">.</span><span class="n">register_car</span><span class="p">(</span><span class="s2">&#34;electric&#34;</span><span class="p">,</span> <span class="n">ElectricCar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">car_factory</span><span class="o">.</span><span class="n">register_car</span><span class="p">(</span><span class="s2">&#34;gasoline&#34;</span><span class="p">,</span> <span class="n">GasolineCar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">car_factory</span><span class="o">.</span><span class="n">register_car</span><span class="p">(</span><span class="s2">&#34;hybrid&#34;</span><span class="p">,</span> <span class="n">HybridCar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">electric_car</span> <span class="o">=</span> <span class="n">car_factory</span><span class="o">.</span><span class="n">create_car</span><span class="p">(</span><span class="s2">&#34;electric&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">electric_car</span><span class="o">.</span><span class="n">start</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">gasoline_car</span> <span class="o">=</span> <span class="n">car_factory</span><span class="o">.</span><span class="n">create_car</span><span class="p">(</span><span class="s2">&#34;gasoline&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">gasoline_car</span><span class="o">.</span><span class="n">start</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">hybrid_car</span> <span class="o">=</span> <span class="n">car_factory</span><span class="o">.</span><span class="n">create_car</span><span class="p">(</span><span class="s2">&#34;hybrid&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">hybrid_car</span><span class="o">.</span><span class="n">start</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></div><p>The output:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Starting electric car!
+</span></span><span class="line"><span class="cl">Starting gasoline car!
+</span></span><span class="line"><span class="cl">Starting hybrid car!
+</span></span></code></pre></div><br/>
+<p>Now, the above has few benefits:</p>
+<ol>
+<li>Decoupling: <code>CarFactory</code> decouples the creation of car objects from their usage. Client doesn&rsquo;t need to know about the concrete car classes (<code>ElectricCar</code>, <code>GasolineCar</code>, and <code>HybridCar</code>). This helps make code more modular and easy to maintain.</li>
+<li>Extensibility: If we need to add a new car type, we can simply create a new class for the car type, extend <code>Car</code> abstract base class, and register the car type with <code>CarFactory</code>. This helps adding new car types without affecting the existing code.</li>
+</ol>
+<p>Hope the post have created some value. Peace!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://sukhdeepg.github.io/tags/design-patterns/">design-patterns</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://sukhdeepg.github.io/design-patterns/abstract-factory/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Abstract Factory with examples in Python</span>
+  </a>
+  <a class="next" href="https://sukhdeepg.github.io/design-patterns/solid/">
+    <span class="title">Next »</span>
+    <br>
+    <span>SOLID Principles with examples in Python</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://sukhdeepg.github.io/">💾</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
